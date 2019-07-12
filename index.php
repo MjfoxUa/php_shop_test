@@ -17,7 +17,7 @@ $db= $objectManager->create(\App\core\DbAdapter::class);
 $pathUri=$_SERVER['REQUEST_URI'];
 
 /** @var \App\core\Request $request */
-$request = $objectManager->create(\App\core\Request::class,['path'=>$pathUri]);
+$request = $objectManager->get(\App\core\Request::class,['path'=>$pathUri]);
 
 //echo $request->getModuleName();
 //echo $request->getActionName();

@@ -49,12 +49,13 @@ class ObjectManager
 
     /**
      * @param string $type
+     * @param array  $arguments
      * @return bool|Object
      */
-    public function get(string $type)
+    public function get(string $type, array $arguments = [])
     {
         if (! isset($this->instance[$type])) {
-            $this->instance[$type] = $this->create($type);
+            $this->instance[$type] = $this->create($type, $arguments);
         }
 
         return $this->instance[$type];
