@@ -8,7 +8,7 @@
  * @license     http://wiki.mjfox.com/wiki/EULA  End-user License Agreement
  */
 
-namespace App\core;
+namespace App\Core;
 
 class DbAdapter
 {
@@ -27,7 +27,7 @@ class DbAdapter
      *
      * @param DotEnv $dotEnv
      */
-    public function __construct(\App\core\DotEnv $dotEnv)
+    public function __construct(\App\Core\DotEnv $dotEnv)
     {
         $host = $dotEnv->getValue(self::ENV_FIELD_DB_HOST);
         $dbName = $dotEnv->getValue(self::ENV_FIELD_DB_NAME);

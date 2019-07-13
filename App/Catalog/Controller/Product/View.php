@@ -8,11 +8,11 @@
  * @license     http://wiki.mjfox.com/wiki/EULA  End-user License Agreement
  */
 
-namespace App\models;
+namespace App\Catalog\Controller\Product;
 
-class Test
+class View
 {
-        public function test(){
-            echo'HIII';
-        }
+    public function exeaute(){
+        echo 'Hello from App\Catalog\Controller\Product';
+    }
 }

@@ -8,7 +8,7 @@
  * @license     http://wiki.mjfox.com/wiki/EULA  End-user License Agreement
  */
 
-namespace App\core;
+namespace App\Core;
 
 class DotEnv
 {

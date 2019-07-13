@@ -8,7 +8,7 @@
  * @license     http://wiki.mjfox.com/wiki/EULA  End-user License Agreement
  */
 
-namespace App\core;
+namespace App\Core;
 
 class Request
 {
@@ -27,7 +27,7 @@ class Request
 
     public function getControllerName()
     {
-        #var_dump($this->path);
+        var_dump($this->path);
         $patsParts = explode('/',$this->path);
         //var_dump($patsParts);
         $patsParts = $patsParts[3];

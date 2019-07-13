@@ -8,7 +8,7 @@
  * @license     http://wiki.mjfox.com/wiki/EULA  End-user License Agreement
  */
 
-namespace App\core;
+namespace App\Core;
 
 class ObjectManager
 {
@@ -17,11 +17,17 @@ class ObjectManager
      */
     private $instance = [];
 
+//    private $objectManager;
     /**
      * @param       $type
      * @param array $arguments
      * @return bool|Object
      */
+//    public function __construct(ObjectManager $objectManager)
+//    {
+//        $this->objectManager = $objectManager;
+//    }
+
     public function create(string $type, array $arguments = [])
     {
         try {
