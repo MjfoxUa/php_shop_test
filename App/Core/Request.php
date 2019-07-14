@@ -27,18 +27,14 @@ class Request
 
     public function getControllerName()
     {
-        var_dump($this->path);
         $patsParts = explode('/',$this->path);
-        //var_dump($patsParts);
-        $patsParts = $patsParts[3];
-        //var_dump($patsParts);
-        return ucfirst($patsParts).'Controller';
+        return ucfirst($patsParts[3]);
     }
 
     public function getActionName()
     {
         $patsParts = explode('/',$this->path);
-        return ucfirst($patsParts[4]).'Action';
+        return ucfirst($patsParts[4]);
     }
 
     public function getParams()

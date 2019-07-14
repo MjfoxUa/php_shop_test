@@ -15,18 +15,22 @@ class ObjectManager
     /**
      * @var array
      */
-    private $instance = [];
+    private static $instance = [];
 
-//    private $objectManager;
+
     /**
-     * @param       $type
-     * @param array $arguments
-     * @return bool|Object
+     * @return ObjectManager|null
      */
-//    public function __construct(ObjectManager $objectManager)
-//    {
-//        $this->objectManager = $objectManager;
-//    }
+    public static function getInstance()
+    {
+        if (! isset(self::$instance[self::class])) {
+            self::$instance[self::class] = new self();
+        }
+        return self::$instance[self::class];
+    }
+
+    private function __clone() {}
+    private function __construct() {}
 
     public function create(string $type, array $arguments = [])
     {
@@ -60,11 +64,11 @@ class ObjectManager
      */
     public function get(string $type, array $arguments = [])
     {
-        if (! isset($this->instance[$type])) {
-            $this->instance[$type] = $this->create($type, $arguments);
+        if (! isset(self::$instance[$type])) {
+            self::$instance[$type] = $this->create($type, $arguments);
         }
 
-        return $this->instance[$type];
+        return self::$instance[$type];
     }
 
     /**

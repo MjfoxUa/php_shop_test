@@ -34,9 +34,7 @@ $request = $objectManager->get(\App\Core\Request::class,['path' => $_SERVER['REQ
 
 /** @var \App\Core\Router $router */
 $router = $objectManager->get(\App\Core\Router::class);
-
-
-$router->match();
+$router->match()->exeaute();
 
 //try {
 //    $controller = $router->match();
@@ -44,3 +42,12 @@ $router->match();
 //} catch (\Exception $exception) {
 //    var_dump($exception->getMessage());
 //}
+
+
+
+
+
+
+
+
+

@@ -15,4 +15,4 @@ error_reporting(E_ALL);
 
 include_once 'vendor/autoload.php';
 
-$objectManager = new \App\Core\ObjectManager();
+$objectManager = \App\Core\ObjectManager::getInstance();
