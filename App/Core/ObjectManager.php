@@ -17,11 +17,10 @@ class ObjectManager
      */
     private static $instance = [];
 
-
     /**
-     * @return ObjectManager|null
+     * @return ObjectManager
      */
-    public static function getInstance()
+    public static function getInstance() : ObjectManager
     {
         if (! isset(self::$instance[self::class])) {
             self::$instance[self::class] = new self();
@@ -32,6 +31,11 @@ class ObjectManager
     private function __clone() {}
     private function __construct() {}
 
+    /**
+     * @param string $type
+     * @param array  $arguments
+     * @return bool|object
+     */
     public function create(string $type, array $arguments = [])
     {
         try {

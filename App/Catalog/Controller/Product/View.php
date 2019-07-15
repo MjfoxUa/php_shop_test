@@ -12,7 +12,7 @@ namespace App\Catalog\Controller\Product;
 
 class View
 {
-    public function exeaute(){
+    public function execute(){
         echo 'Hello from App\Catalog\Controller\Product';
     }
 }
