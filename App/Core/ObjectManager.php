@@ -94,7 +94,6 @@ class ObjectManager
                 $result[] = $param['value'];
             }
         }
-
         return $result;
     }
 }
