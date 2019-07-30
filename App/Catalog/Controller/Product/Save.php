@@ -39,13 +39,16 @@ class Save
     public function execute()
     {
         if (file_exists($this->uploadFileName) !== true) {
-            if (move_uploaded_file($this->fileTmpDirectory, 'uploaded')) {
+            if (move_uploaded_file($this->fileTmpDirectory, 'uploaded/'.$this->uploadFileName)) {
                 echo "Файли загружено\n";
             }
         }else{
             echo  "Помилка при загрузці файлів\n";
         }
-       $result =  $this->dbAdapter->query("INSERT INTO `products` (`id`, `category`, `name`, `sku`, `price`, `image`, `description`) VALUES (NULL, '$this->category', '$this->name', '$this->sku', '$this->uploadFileName', '$this->price', '$this->description');");
+       $result =  $this->dbAdapter->query(
+           "INSERT INTO `products` (`id`, `category`, `name`, `sku`, `price`, `image`, `description`)".
+           " VALUES (NULL, '$this->category', '$this->name', '$this->sku', '$this->uploadFileName', '$this->price', '$this->description');"
+       );
 
         return $result;
     }

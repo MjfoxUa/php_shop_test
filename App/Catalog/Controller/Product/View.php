@@ -12,7 +12,22 @@ namespace App\Catalog\Controller\Product;
 
 class View
 {
-    public function execute(){
-        echo 'Hello from App\Catalog\Controller\Product';
+
+    /**
+     * @var \App\Core\Block\Page
+     */
+    private $page;
+
+    public function __construct(\App\Core\Block\Page $page)
+    {
+
+        $this->page = $page;
+    }
+
+    public function execute()
+    {
+        $this->page->setTitle('Product');
+
+        $this->page->render();
     }
 }
