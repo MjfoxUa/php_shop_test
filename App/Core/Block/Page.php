@@ -25,13 +25,13 @@ class Page
         return $this->title;
     }
 
-    public function setMainContent($productList)
+    public function setMainContentBlock($contentBlock)
     {
-        $this->mainContentBlock = $productList;
+        $this->mainContentBlock = $contentBlock;
     }
-    public function getMainContent()
+    public function getMainContentBlock()
     {
-        return  $this->mainContentBlock->render();
+        return $this->mainContentBlock;
     }
     public function render()
     {

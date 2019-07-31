@@ -28,8 +28,7 @@ class View
     public function execute()
     {
         $this->page->setTitle('Product');
-        $this->page->setMainContent($this->productList);
-        $this->page->getMainContent();
+        $this->page->setMainContentBlock($this->productList);
         $this->page->render();
     }
 }
