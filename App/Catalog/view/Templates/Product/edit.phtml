@@ -3,16 +3,16 @@
         <legend align="center">ADD PRODUCT</legend>
         <p align="center">
             <label for="name">Name:</label>
-            <input type="text" name="name" placeholder="Add product name" id="name" >
+            <input type="text" name="name" placeholder="Add product name" id="name" pattern="[A-Za-zА-Яа-яЁё]">
         <p align="center">
             <label for="category">Category:</label>
-            <input type="text" name="category" placeholder="Add product category" id="category" >
+            <input type="text" name="category" placeholder="Add product category" id="category" pattern="[A-Za-zА-Яа-яЁё]" >
         <p align="center">
             <label for="sku">SKU :</label>
-            <input type="text" name="sku" placeholder="Add SKU" id="sku" >
+            <input type="text" name="sku" placeholder="Add SKU" id="sku" pattern="^[ 0-9]+$">
         <p align="center">
             <label for="price">Price :</label>
-            <input type="text" name="price" placeholder="Add price" id="price" >
+            <input type="text" name="price" placeholder="Add price" id="price" pattern="\d+(\.\d{2})?">
         <p align="center">
             <label for="description">Description: </label>
             <textarea cols="60" rows="5" name="description" placeholder="Add description" id="description"  ></textarea>

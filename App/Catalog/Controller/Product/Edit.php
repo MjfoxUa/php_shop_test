@@ -13,7 +13,6 @@ namespace App\Catalog\Controller\Product;
 class Edit
 {
     public function execute(){
-        echo 'Hello from App\Catalog\Controller\Product\Edit';
         include './App/Catalog/View/Templates/Product/edit.phtml';
     }
 }

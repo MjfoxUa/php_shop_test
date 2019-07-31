@@ -14,6 +14,6 @@ class ProductList
 {
     public function render()
     {
-      return'123444';
+      echo '123444';
     }
 }
