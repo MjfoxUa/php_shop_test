@@ -13,6 +13,7 @@ namespace App\Core\Block;
 class Page
 {
     private $title;
+    private $mainContentBlock;
 
     public function setTitle($title)
     {
@@ -23,8 +24,18 @@ class Page
     {
         return $this->title;
     }
+
+    public function setMainContent($productList)
+    {
+        $this->mainContentBlock = $productList;
+    }
+    public function getMainContent()
+    {
+        return  $this->mainContentBlock->render();
+    }
     public function render()
     {
         include BP.'\App\Core\view\templates\page.phtml';
     }
+
 }

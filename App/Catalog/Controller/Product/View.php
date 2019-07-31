@@ -17,17 +17,19 @@ class View
      * @var \App\Core\Block\Page
      */
     private $page;
+    private $productList;
 
-    public function __construct(\App\Core\Block\Page $page)
+    public function __construct(\App\Core\Block\Page $page, \App\Catalog\Block\ProductList $productList)
     {
-
+        $this->productList = $productList;
         $this->page = $page;
     }
 
     public function execute()
     {
         $this->page->setTitle('Product');
-
+        $this->page->setMainContent($this->productList);
+        $this->page->getMainContent();
         $this->page->render();
     }
 }
