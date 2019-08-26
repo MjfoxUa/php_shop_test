@@ -16,4 +16,13 @@ class ProductList
     {
       echo '123444';
     }
+
+    public function toHtml()
+    {
+        ob_start();
+        include 'template1.php';
+        $a = ob_get_contents();
+        ob_clean();
+        return $a;
+    }
 }
