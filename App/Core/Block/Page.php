@@ -14,7 +14,17 @@ class Page
 {
     private $title;
     private $mainContentBlock;
+    private $categoryListBlock;
 
+    public function getCategoryList()
+    {
+        return $this->categoryListBlock;
+    }
+
+    public function setCategoryList($categoryListBlock)
+    {
+        $this->categoryListBlock = $categoryListBlock;
+    }
     public function setTitle($title)
     {
         $this->title = $title;

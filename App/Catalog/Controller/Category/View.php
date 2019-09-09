@@ -8,7 +8,7 @@
  * @license     http://wiki.mjfox.com/wiki/EULA  End-user License Agreement
  */
 
-namespace App\Catalog\Controller\Product;
+namespace App\Catalog\Controller\Category;
 
 class View
 {
@@ -44,6 +44,11 @@ class View
     private $categoryList;
 
     /**
+     * @var \App\Catalog\Block\CategoryView
+     */
+    private $categoryView;
+
+    /**
      * View constructor.
      *
      * @param \App\Core\Block\Page               $page
@@ -53,6 +58,7 @@ class View
      * @param \App\Catalog\Model\CategoryFactory $categoryFactory
      * @param \App\Core\Request                  $request
      * @param \App\Catalog\Model\Category        $category
+     * @param \App\Catalog\Block\CategoryView    $categoryView
      */
     public function __construct(
         \App\Core\Block\Page $page,
@@ -61,7 +67,8 @@ class View
         \App\Catalog\Model\ProductFactory $productFactory,
         \App\Catalog\Model\CategoryFactory $categoryFactory,
         \App\Core\Request $request,
-        \App\Catalog\Model\Category $category
+        \App\Catalog\Model\Category $category,
+        \App\Catalog\Block\CategoryView $categoryView
     ) {
         $this->productView = $productView;
         $this->page = $page;
@@ -70,21 +77,35 @@ class View
         $this->request = $request;
         $this->category = $category;
         $this->categoryList = $categoryList;
+        $this->categoryView = $categoryView;
+
     }
 
     public function execute()
     {
+
         $category = $this->categoryFactory->create();
         $category->loadCategorys();
         $category->getCategorys();
         $this->categoryList->setCategory($category);
         $this->page->setCategoryList($this->categoryList);
-        $id = $this->request->getParam('id');
+        $categoryID = key($this->request->getParams());
         $product = $this->productFactory->create();
-        $product->load($id);
-        $this->productView->setProduct($product);
-        $this->page->setTitle('Product');
-        $this->page->setMainContentBlock($this->productView);
+        $product->loadProducts();
+        $this->page->setTitle(ucfirst($categoryID));
+        $productList = $product->getProductList();
+
+        $categoryListById = [];
+        $k = 0;
+        foreach ($productList as $products){
+            if($products['category'] === $categoryID){
+                $categoryListById[$k] = $products;
+            }
+            $k++;
+        }
+        $this->categoryView->setCategoryListById($categoryListById);
+
+        $this->page->setMainContentBlock($this->categoryView);
         $this->page->render();
     }
 }

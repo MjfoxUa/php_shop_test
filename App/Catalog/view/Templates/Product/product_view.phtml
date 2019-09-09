@@ -1,0 +1,31 @@
+<?php /** @var $block \App\Catalog\Block\ProductView */?>
+<?php  ($block->getProduct()->getName()); ?>
+<?php  $block->getProduct()->getSku(); ?>
+
+<div class="product-info">
+  <div class="product-info__category">
+    <p><?php echo ($block->getProduct()->getCategory()); ?></p>
+  </div>
+  <div class="product-info__image">
+    <img src="<?php echo ('/shop/uploaded/'.$block->getProduct()->getImage()); ?>" alt="Product Image">
+  </div>
+
+  <div class="product-info__total">
+    <div class="product-info__name">
+      <h3><?php echo ($block->getProduct()->getName()); ?></h3>
+    </div>
+    <div class="product-info__price">
+      <p>PRICE : <?php echo ($block->getProduct()->getPrice()); ?> $</p>
+    </div>
+    <div class="product-info__sku">
+      <p>sku : <?php echo ($block->getProduct()->getSku()); ?></p>
+    </div>
+    <div class="product-info__add-to-cart-button">
+      <button>Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="product-info__description">
+    <p> Infirmation : <?php echo ($block->getProduct()->getDescription()); ?></p>
+  </div>
+</div>

@@ -10,7 +10,7 @@
 
 namespace App\Catalog\Block;
 
-class ProductList
+class ProductView
 {
     private $product;
 
@@ -32,7 +32,7 @@ class ProductList
     {
         $block = $this;
         ob_start();
-        include BP.'\App\Core\view\templates\product_list.phtml';
+        include BP.'\App\Catalog\view\Templates\Product\product_view.phtml';
         $a = ob_get_contents();
         ob_clean();
         return $a;

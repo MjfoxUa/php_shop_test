@@ -1,0 +1,22 @@
+<?php /** @var $block \App\Catalog\Block\CategoryView */?>
+
+<div class="product-list">
+    <?php foreach ($block->getCategoryListById() as $products): ?>
+      <a href="http://localhost/shop/catalog/product/view/id/<?php echo $products['id']  ?>">
+        <div class="product-list__info">
+            <li>
+                <img src="<?php echo ('/shop/uploaded/'.$products['image']); ?>" alt="Product Image">
+              <div class="text">
+                   Name: <?php echo $products['name'] ?><br>
+                    Price : <?php echo $products['price'] ?> $<br>
+                    Category : <?php echo $products['category'] ?>
+                <div class="product-info__add-to-cart-button">
+                  <button>Add to Cart</button>
+                </div>
+              </div>
+
+            </li>
+        </div>
+      </a>
+    <?php endforeach; ?>
+</div>

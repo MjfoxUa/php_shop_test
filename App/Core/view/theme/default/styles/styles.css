@@ -1,0 +1,134 @@
+.product-info {
+  font-family: Helvetica, sans-serif;
+  margin-right: 5%;
+  margin-left: 15%;
+  position: absolute;
+  background: #f1f1f1;
+  border: 1.5px solid #9f9f9f;
+  width: 70%;
+  color: #004a84;
+}
+
+.product-info__image > img {
+  float: left;
+  position: relative;
+  width: 30%;
+  left: 5%;
+}
+
+.product-info__total {
+  position: relative;
+  float: right;
+  margin-right: 20%;
+  font-size: 24px;
+}
+.product-info__category {
+  color: #004a84;
+  font-size: 24px;
+  position: relative;
+  float: top;
+  margin-left: 5%;
+}
+
+.product-info__name {
+ font-size: 33px;
+}
+
+.product-info__price {
+ font-size: 28px;
+}
+.product-info__sku {
+  font-size: 20px;
+  font-style: italic;
+}
+.product-info__add-to-cart-button > button {
+  border: 1px solid #ffb600;
+  background: #ffb600;
+  width: 110%;
+  height: 100%;
+  border-radius: 30px;
+  font-size: 30px;
+  color: #004a84;
+}
+
+.product-info__add-to-cart-button > button:hover {
+  background: white;
+}
+.product-info__description {
+  font-size: 24px;
+  position: relative;
+  left: 5%;
+  margin-top: 35%;
+}
+
+
+.header_main {
+  position: relative;
+  margin-bottom: 15px;
+}
+.header_main > li {
+  position: relative;
+  display: inline;
+  border: 1px solid #ffb600;
+  background: #ffb600;
+  border-radius: 30px;
+  font-size: 30px;
+
+}
+
+.header_main > li > a {
+  text-decoration: none;
+  color: #004a84;
+  font-size: 24px;
+  padding: 20px;
+  margin: 10px;
+}
+
+.header_main > li:hover {
+  background: white;
+}
+
+.product-list{
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-bottom: 5%;
+  position: absolute;
+  background: #f1f1f1;
+  border: 1.5px solid #9f9f9f;
+}
+.product-list > a {
+  margin: 25px;
+  text-decoration: none;
+  float: right;
+  height: 300px;
+  width: 500px;
+}
+
+.product-list > a :hover {
+   background: white;
+ }
+
+.product-list__info > li > img {
+  border: 1px solid #9f9f9f;
+  width: 200px;
+  height: 150px;
+  margin: 25px;
+}
+.product-list__info > li > .text {
+  width: 200px;
+  float: right;
+  margin: 20px;
+}
+
+.product-list__info {
+  list-style-type: none;
+  display: inline;
+  margin: 20px;
+  font-size: 20px;
+  font-family: Helvetica, sans-serif;
+  color: #004a84;
+}
+
+.product-info__add-to-cart-button {
+  padding: 10px;
+}

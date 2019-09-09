@@ -8,7 +8,7 @@
  * @license     http://wiki.mjfox.com/wiki/EULA  End-user License Agreement
  */
 
-namespace App\Catalog\Controller\Product;
+namespace App\Core\Controller\Home;
 
 class View
 {
@@ -44,11 +44,15 @@ class View
     private $categoryList;
 
     /**
+     * @var \App\Catalog\Block\ProductList
+     */
+    private $productList;
+    /**
      * View constructor.
      *
      * @param \App\Core\Block\Page               $page
      * @param \App\Catalog\Block\CategoryList    $categoryList
-     * @param \App\Catalog\Block\ProductView     $productView
+     * @param \App\Catalog\Block\ProductList     $productList
      * @param \App\Catalog\Model\ProductFactory  $productFactory
      * @param \App\Catalog\Model\CategoryFactory $categoryFactory
      * @param \App\Core\Request                  $request
@@ -57,13 +61,13 @@ class View
     public function __construct(
         \App\Core\Block\Page $page,
         \App\Catalog\Block\CategoryList $categoryList,
-        \App\Catalog\Block\ProductView $productView,
+        \App\Catalog\Block\ProductList $productList,
         \App\Catalog\Model\ProductFactory $productFactory,
         \App\Catalog\Model\CategoryFactory $categoryFactory,
         \App\Core\Request $request,
         \App\Catalog\Model\Category $category
     ) {
-        $this->productView = $productView;
+        $this->productList = $productList;
         $this->page = $page;
         $this->productFactory = $productFactory;
         $this->categoryFactory = $categoryFactory;
@@ -81,10 +85,10 @@ class View
         $this->page->setCategoryList($this->categoryList);
         $id = $this->request->getParam('id');
         $product = $this->productFactory->create();
-        $product->load($id);
-        $this->productView->setProduct($product);
-        $this->page->setTitle('Product');
-        $this->page->setMainContentBlock($this->productView);
+        $product->loadProducts();
+        $this->productList->setProduct($product);
+        $this->page->setTitle('Home');
+        $this->page->setMainContentBlock($this->productList);
         $this->page->render();
     }
 }

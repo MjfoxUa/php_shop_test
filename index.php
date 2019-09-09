@@ -17,14 +17,6 @@ $request = $objectManager->get(\App\Core\Request::class, ['path' => $_SERVER['RE
 $router = $objectManager->get(\App\Core\Router::class);
 $router->match()->execute();
 
-//try {
-//    $controller = $router->match();
-//    $result->render();
-//} catch (\Exception $exception) {
-//    var_dump($exception->getMessage());
-//}
-
-
 
 
 

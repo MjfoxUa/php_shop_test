@@ -18,38 +18,44 @@ class Request
     {
         $this->path = $path;
     }
-
-    public function getModuleName()
-    {
-        $patsParts = explode('/',$this->path);
-        return ucfirst($patsParts[2]);
-    }
-
-    public function getControllerName()
-    {
-        $patsParts = explode('/',$this->path);
-        return ucfirst($patsParts[3]);
-    }
-
-    public function getActionName()
-    {
-        $patsParts = explode('/',$this->path);
-        return ucfirst($patsParts[4]);
-    }
-
-    public function getParams()
-    {
-        $params = [];
-        $patsParts = explode('/',$this->path);
-        $params[$patsParts[5]] = $patsParts[6];
-        return $params;
-    }
-    public function getParam($name, $default = null)
-    {
-        $patsParts = explode('/',$this->path);
-        if($patsParts[6]){
-            return $param[$name]=$patsParts[6];
+        public function getModuleName()
+        {
+            $pathsParts = $this->getParts();
+            return ucfirst($pathsParts[1]);
         }
-        return $default;
-    }
+
+        public function getControllerName()
+        {
+            $pathsParts = $this->getParts();
+            return ucfirst($pathsParts[2]);
+        }
+
+        public function getActionName()
+        {
+            $pathsParts = $this->getParts();
+            return ucfirst($pathsParts[3]);
+        }
+
+        private function getParts()
+        {
+            return explode('/',trim($this->path, '/'));
+        }
+
+        public function getParams()
+        {
+            $params = [];
+            $pathsParts = $this->getParts();
+            for ($i = 4; isset($pathsParts[$i]); $i += 2){
+                $params[$pathsParts[$i]] = $pathsParts[$i + 1] ?? 0;
+            }
+            return $params;
+        }
+
+        public function getParam(string $string)
+        {
+            if(isset($this->getParams()[$string])){
+                return $this->getParams()[$string];
+            }
+            return null;
+        }
 }

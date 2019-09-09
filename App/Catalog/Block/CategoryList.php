@@ -10,29 +10,30 @@
 
 namespace App\Catalog\Block;
 
-class ProductList
+class CategoryList
 {
-    private $product;
+    private $category;
 
     /**
-     * @return \App\Catalog\Model\Product
+     * @return \App\Catalog\Model\Category
      */
-    public function getProduct(){
-        return $this->product;
+    public function getCategory(){
+        return $this->category;
     }
 
     /**
-     * @param $product
+     * @param $category
      */
-    public function setProduct($product){
-        $this->product = $product;
+    public function setCategory($category)
+    {
+        $this->category = $category;
     }
 
     public function toHtml()
     {
         $block = $this;
         ob_start();
-        include BP.'\App\Core\view\templates\product_list.phtml';
+        include BP.'\App\Catalog\view\Templates\Category\category_list.phtml';
         $a = ob_get_contents();
         ob_clean();
         return $a;
