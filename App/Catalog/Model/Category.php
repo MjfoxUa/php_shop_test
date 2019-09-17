@@ -49,7 +49,7 @@ class Category
      * @param $name
      * @return $this
      */
-    private function setName($name)
+    public function setName($name)
     {
         $this->name = $name;
         return $this;
@@ -59,7 +59,7 @@ class Category
      * @param $url
      * @return $this
      */
-    private function setUrl($url)
+    public function setUrl($url)
     {
         $this->url = $url;
         return $this;
@@ -73,6 +73,10 @@ class Category
         return $this->name;
     }
 
+    public function getCaregoryUrl()
+    {
+        return '/shop/catalog/category/view/'.$this->getUrl();
+    }
     /**
      * @return mixed
      */
@@ -85,7 +89,7 @@ class Category
      * @param int $param
      * @return $this
      */
-    private function setCategoryCount(int $param)
+    public function setCategoryCount(int $param)
     {
         $this->categoryCount = $param;
         return $this;
@@ -100,7 +104,7 @@ class Category
      * @param array $categorys
      * @return $this
      */
-    private function setCategorys(array $categorys)
+    public function setCategorys(array $categorys)
     {
         $this->categorys = $categorys;
         return $this;

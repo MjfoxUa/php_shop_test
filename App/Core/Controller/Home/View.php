@@ -24,66 +24,30 @@ class View
     private $productFactory;
 
     /**
-     * @var \App\Core\Request
-     */
-    private $request;
-
-    /**
-     * @var \App\Catalog\Model\Category
-     */
-    private $category;
-
-    /**
-     * @var
-     */
-    private $categoryFactory;
-
-    /**
-     * @var \App\Catalog\Block\CategoryList
-     */
-    private $categoryList;
-
-    /**
      * @var \App\Catalog\Block\ProductList
      */
     private $productList;
+
     /**
      * View constructor.
      *
-     * @param \App\Core\Block\Page               $page
-     * @param \App\Catalog\Block\CategoryList    $categoryList
-     * @param \App\Catalog\Block\ProductList     $productList
-     * @param \App\Catalog\Model\ProductFactory  $productFactory
-     * @param \App\Catalog\Model\CategoryFactory $categoryFactory
-     * @param \App\Core\Request                  $request
-     * @param \App\Catalog\Model\Category        $category
+     * @param \App\Core\Block\Page              $page
+     * @param \App\Catalog\Block\ProductList    $productList
+     * @param \App\Catalog\Model\ProductFactory $productFactory
      */
     public function __construct(
         \App\Core\Block\Page $page,
-        \App\Catalog\Block\CategoryList $categoryList,
         \App\Catalog\Block\ProductList $productList,
-        \App\Catalog\Model\ProductFactory $productFactory,
-        \App\Catalog\Model\CategoryFactory $categoryFactory,
-        \App\Core\Request $request,
-        \App\Catalog\Model\Category $category
+        \App\Catalog\Model\ProductFactory $productFactory
+
     ) {
         $this->productList = $productList;
         $this->page = $page;
         $this->productFactory = $productFactory;
-        $this->categoryFactory = $categoryFactory;
-        $this->request = $request;
-        $this->category = $category;
-        $this->categoryList = $categoryList;
     }
 
     public function execute()
     {
-        $category = $this->categoryFactory->create();
-        $category->loadCategorys();
-        $category->getCategorys();
-        $this->categoryList->setCategory($category);
-        $this->page->setCategoryList($this->categoryList);
-        $id = $this->request->getParam('id');
         $product = $this->productFactory->create();
         $product->loadProducts();
         $this->productList->setProduct($product);

@@ -31,7 +31,7 @@ class CategoryView
     {
         $block = $this;
         ob_start();
-        include BP.'\App\Catalog\view\Templates\Category\category_list_by_id.phtml';
+        include BP.'\App\Catalog\view\Templates\Category\menu.phtml';
         $a = ob_get_contents();
         ob_clean();
         return $a;

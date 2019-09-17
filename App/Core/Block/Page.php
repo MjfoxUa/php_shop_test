@@ -14,17 +14,21 @@ class Page
 {
     private $title;
     private $mainContentBlock;
+    /**
+     * @var \App\Catalog\Block\CategoryList
+     */
     private $categoryListBlock;
+
+    public function __construct(\App\Catalog\Block\CategoryList $categoryListBlock)
+    {
+        $this->categoryListBlock = $categoryListBlock;
+    }
 
     public function getCategoryList()
     {
         return $this->categoryListBlock;
     }
 
-    public function setCategoryList($categoryListBlock)
-    {
-        $this->categoryListBlock = $categoryListBlock;
-    }
     public function setTitle($title)
     {
         $this->title = $title;

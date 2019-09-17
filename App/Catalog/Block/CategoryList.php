@@ -12,22 +12,25 @@ namespace App\Catalog\Block;
 
 class CategoryList
 {
-    private $category;
-
     /**
-     * @return \App\Catalog\Model\Category
+     * @var \App\Catalog\Model\CategoryCollection
      */
-    public function getCategory(){
-        return $this->category;
-    }
+    private $categoryCollection;
 
-    /**
-     * @param $category
-     */
-    public function setCategory($category)
+
+    public function __construct( \App\Catalog\Model\CategoryCollection $categoryCollection)
     {
-        $this->category = $category;
+        $this->categoryCollection = $categoryCollection;
     }
+
+    /**
+     * @return \App\Catalog\Model\Category[]
+     */
+    public function getCategories()
+    {
+        return $this->categoryCollection->getItems();
+    }
+
 
     public function toHtml()
     {

@@ -1,7 +1,6 @@
 <?php /** @var $block \App\Catalog\Block\CategoryList */?>
-<?php  $block->getCategory()->getName(); ?>
 
-<?php foreach ($block->getCategory()->getCategorys() as $category): ?>
-    <li><a href="<?php echo $category['url']; ?>"><?php echo ucfirst ($category['name'] ); ?></a></li>
+<?php foreach ($block->getCategories() as $category): ?>
+    <li><a href="<?php echo $category->getCaregoryUrl(); ?>"><?php echo ucfirst ($category->getName() ); ?></a></li>
 <?php endforeach; ?>
 

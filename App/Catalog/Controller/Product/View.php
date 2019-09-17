@@ -77,8 +77,6 @@ class View
         $category = $this->categoryFactory->create();
         $category->loadCategorys();
         $category->getCategorys();
-        $this->categoryList->setCategory($category);
-        $this->page->setCategoryList($this->categoryList);
         $id = $this->request->getParam('id');
         $product = $this->productFactory->create();
         $product->load($id);
