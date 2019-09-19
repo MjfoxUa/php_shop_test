@@ -10,13 +10,13 @@
 
 namespace App\Catalog\Block;
 
-class CategoryList
+class CategoryList extends Block
 {
     /**
      * @var \App\Catalog\Model\CategoryCollection
      */
     private $categoryCollection;
-
+    protected $templatePath = '\App\Catalog\view\Templates\Category\category_list.phtml';
 
     public function __construct( \App\Catalog\Model\CategoryCollection $categoryCollection)
     {
@@ -31,14 +31,4 @@ class CategoryList
         return $this->categoryCollection->getItems();
     }
 
-
-    public function toHtml()
-    {
-        $block = $this;
-        ob_start();
-        include BP.'\App\Catalog\view\Templates\Category\category_list.phtml';
-        $a = ob_get_contents();
-        ob_clean();
-        return $a;
-    }
 }

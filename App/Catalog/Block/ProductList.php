@@ -10,31 +10,38 @@
 
 namespace App\Catalog\Block;
 
-class ProductList
+class ProductList extends Block
 {
     private $product;
+    /**
+     * @var \App\Catalog\Model\CategoryFactory
+     */
+    private $categoryFactory;
+    /**
+     * @var \App\Catalog\Model\ProductCollection
+     */
+    private $productCollection;
+
+    protected $templatePath = '\App\Core\view\templates\product_list.phtml';
+
+
+    public function __construct(\App\Catalog\Model\CategoryFactory $categoryFactory, \App\Catalog\Model\ProductCollection $productCollection)
+    {
+        $this->categoryFactory = $categoryFactory;
+        $this->productCollection = $productCollection;
+    }
 
     /**
-     * @return \App\Catalog\Model\Product
+     * @return \App\Catalog\Model\Product[]
      */
     public function getProduct(){
-        return $this->product;
+        return $this->productCollection->getItems();
     }
 
-    /**
-     * @param $product
-     */
-    public function setProduct($product){
-        $this->product = $product;
-    }
-
-    public function toHtml()
+    public function setCategory($categoryUrl)
     {
-        $block = $this;
-        ob_start();
-        include BP.'\App\Core\view\templates\product_list.phtml';
-        $a = ob_get_contents();
-        ob_clean();
-        return $a;
+        $category = $this->categoryFactory->create()->load($categoryUrl, 'url');
+        $this->productCollection->setCategoryFilter($category->getId());
+        return $this;
     }
 }

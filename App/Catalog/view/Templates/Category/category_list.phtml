@@ -1,6 +1,6 @@
 <?php /** @var $block \App\Catalog\Block\CategoryList */?>
 
 <?php foreach ($block->getCategories() as $category): ?>
-    <li><a href="<?php echo $category->getCaregoryUrl(); ?>"><?php echo ucfirst ($category->getName() ); ?></a></li>
+    <li><a href="<?php echo $category->getCategoryUrl(); ?>"><?php echo ucfirst ($category->getName() ); ?></a></li>
 <?php endforeach; ?>
 

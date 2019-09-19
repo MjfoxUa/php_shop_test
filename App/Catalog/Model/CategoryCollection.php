@@ -15,6 +15,7 @@ class CategoryCollection
     private $categoryFactory;
     private $dbAdapter;
     private $items;
+
     /**
      * @var bool
      */
@@ -34,6 +35,7 @@ class CategoryCollection
                 $category =  $this->categoryFactory->create();
                 $category->setName($categoryData['name']);
                 $category->setUrl($categoryData['url']);
+                $category->setId($categoryData['id']);
                 $this->items[] = $category;
             }
             $this->loaded = true;

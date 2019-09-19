@@ -14,9 +14,12 @@ class Category
 {
     private $name;
     private $url;
-    private $categoryCount;
-    private $categorys;
+    private $id;
 
+    /**
+     * @var \App\Core\DbAdapter
+     */
+    private $dbAdapter;
 
     public function __construct(\App\Core\DbAdapter $dbAdapter)
     {
@@ -24,27 +27,37 @@ class Category
     }
 
     /**
-     * @param $id
+     * @param        $id
+     * @param string $field
+     * @return $this
      */
-    public function load($id)
+    public function load($id, $field = 'id')
     {
-        $categoryData =  $this->dbAdapter->selectRow("SELECT * FROM `category` WHERE `id`='$id'");
+        $categoryData =  $this->dbAdapter->selectRow("SELECT * FROM `category` WHERE `$field`='$id'");
         $this->setName($categoryData['name']);
         $this->setUrl($categoryData['url']);
+        $this->setId($categoryData['id']);
+        return $this;
     }
 
-    public function loadCategorys()
+    /**
+     * @return mixed
+     */
+    public function getId()
     {
-        $categorys = $this->dbAdapter->select("SELECT * FROM `category`");
-        $this->setCategorys($categorys);
+        return $this->id;
     }
 
-
-    public function categoryCount()
+    /**
+     * @param $id
+     * @return $this
+     */
+    public function setId($id)
     {
-        $categoryDataCount = $this->dbAdapter->select("SELECT * FROM `category`");
-        $this->setCategoryCount($categoryCount = count($categoryDataCount));
+        $this->id = $id;
+        return $this;
     }
+
     /**
      * @param $name
      * @return $this
@@ -73,7 +86,7 @@ class Category
         return $this->name;
     }
 
-    public function getCaregoryUrl()
+    public function getCategoryUrl()
     {
         return '/shop/catalog/category/view/'.$this->getUrl();
     }
@@ -85,33 +98,4 @@ class Category
         return $this->url;
     }
 
-    /**
-     * @param int $param
-     * @return $this
-     */
-    public function setCategoryCount(int $param)
-    {
-        $this->categoryCount = $param;
-        return $this;
-    }
-
-    public function getCategoryCount()
-    {
-        return $this->categoryCount;
-    }
-
-    /**
-     * @param array $categorys
-     * @return $this
-     */
-    public function setCategorys(array $categorys)
-    {
-        $this->categorys = $categorys;
-        return $this;
-    }
-
-    public function getCategorys()
-    {
-        return $this->categorys;
-    }
 }

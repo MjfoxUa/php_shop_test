@@ -21,6 +21,8 @@ class Product
     private $createAt;
     private $updateAt;
     private $productList;
+    private $id;
+
     /**
      * @var \App\Core\DbAdapter
      */
@@ -34,6 +36,7 @@ class Product
     public function load($id)
     {
        $productData =  $this->dbAdapter->selectRow("SELECT * FROM `products` WHERE `id`='$id'");
+        $this->setId($productData['id']);
         $this->setName($productData['name']);
         $this->setSku($productData['sku']);
         $this->setPrice($productData['price']);
@@ -44,12 +47,16 @@ class Product
         $this->setUpdateAt($productData['update_at']);
     }
 
-    public function loadProducts()
+    public function setId($id)
     {
-        $productsListData = $this->dbAdapter->select("SELECT * FROM `products`");
-        $this->setProductsList($productsListData);
+        $this->id = $id;
+        return $this;
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
     /**
      * @return mixed
      */
@@ -130,7 +137,7 @@ class Product
      * @param $image
      * @return $this
      */
-    private function setImage($image)
+    public function setImage($image)
     {
         $this->image = $image;
         return $this;
@@ -140,7 +147,7 @@ class Product
      * @param $category
      * @return $this
      */
-    private function setCategory($category)
+    public function setCategory($category)
     {
         $this->category = $category;
         return $this;
@@ -150,7 +157,7 @@ class Product
      * @param $description
      * @return $this
      */
-    private function setDescription($description)
+    public function setDescription($description)
     {
         $this->description = $description;
         return $this;
@@ -160,7 +167,7 @@ class Product
      * @param $create_at
      * @return $this
      */
-    private function setCreateAt($create_at)
+    public function setCreateAt($create_at)
     {
         $this->createAt = $create_at;
         return $this;
@@ -170,7 +177,7 @@ class Product
      * @param $update_at
      * @return $this
      */
-    private function setUpdateAt($update_at)
+    public function setUpdateAt($update_at)
     {
         $this->updateAt = $update_at;
         return $this;
@@ -180,7 +187,7 @@ class Product
      * @param array $productsList
      * @return $this
      */
-    private function setProductsList(array $productsList)
+    public function setProductsList(array $productsList)
     {
         $this->productList = $productsList;
         return $this;

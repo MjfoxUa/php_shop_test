@@ -10,9 +10,10 @@
 
 namespace App\Catalog\Block;
 
-class CategoryView
+class CategoryView extends Block
 {
     private $categoryListById;
+    protected $templatePath = '\App\Catalog\view\Templates\Category\menu.phtml';
 
     /**
      * @return mixed     */
@@ -25,15 +26,5 @@ class CategoryView
      */
     public function setCategoryListById($categoryListById){
         $this->categoryListById = $categoryListById;
-    }
-
-    public function toHtml()
-    {
-        $block = $this;
-        ob_start();
-        include BP.'\App\Catalog\view\Templates\Category\menu.phtml';
-        $a = ob_get_contents();
-        ob_clean();
-        return $a;
     }
 }

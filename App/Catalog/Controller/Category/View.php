@@ -31,6 +31,10 @@ class View
      * @var \App\Catalog\Block\CategoryView
      */
     private $categoryView;
+    /**
+     * @var \App\Catalog\Block\ProductList
+     */
+    private $productList;
 
     /**
      * View constructor.
@@ -39,40 +43,31 @@ class View
      * @param \App\Catalog\Model\ProductFactory $productFactory
      * @param \App\Core\Request                 $request
      * @param \App\Catalog\Block\CategoryView   $categoryView
+     * @param \App\Catalog\Block\ProductList    $productList
      */
     public function __construct(
         \App\Core\Block\Page $page,
         \App\Catalog\Model\ProductFactory $productFactory,
         \App\Core\Request $request,
-        \App\Catalog\Block\CategoryView $categoryView
+        \App\Catalog\Block\CategoryView $categoryView,
+        \App\Catalog\Block\ProductList $productList
     ) {
 
         $this->page = $page;
         $this->productFactory = $productFactory;
         $this->request = $request;
         $this->categoryView = $categoryView;
+        $this->productList = $productList;
     }
 
     public function execute()
     {
-        $categoryID = key($this->request->getParams());
-        $product = $this->productFactory->create();
-        $product->loadProducts();
-        $this->page->setTitle(ucfirst($categoryID));
-        $productList = $product->getProductList();
+        $categoryUrl = key($this->request->getParams());
+        $this->page->setTitle(ucfirst($categoryUrl));
 
-        $categoryListById = [];
-        $k = 0;
-        foreach ($productList as $products){
-            if($products['category'] === $categoryID){
-                $categoryListById[$k] = $products;
-            }
-            $k++;
-        }
+        $this->productList->setCategory($categoryUrl);
 
-        $this->categoryView->setCategoryListById($categoryListById);
-
-        $this->page->setMainContentBlock($this->categoryView);
+        $this->page->setMainContentBlock($this->productList);
         $this->page->render();
     }
 }

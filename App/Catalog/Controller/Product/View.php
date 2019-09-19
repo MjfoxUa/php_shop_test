@@ -74,9 +74,6 @@ class View
 
     public function execute()
     {
-        $category = $this->categoryFactory->create();
-        $category->loadCategorys();
-        $category->getCategorys();
         $id = $this->request->getParam('id');
         $product = $this->productFactory->create();
         $product->load($id);
