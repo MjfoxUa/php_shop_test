@@ -16,6 +16,10 @@ class CategoryList extends Block
      * @var \App\Catalog\Model\CategoryCollection
      */
     private $categoryCollection;
+
+    /**
+     * @var string
+     */
     protected $templatePath = '\App\Catalog\view\Templates\Category\category_list.phtml';
 
     public function __construct( \App\Catalog\Model\CategoryCollection $categoryCollection)

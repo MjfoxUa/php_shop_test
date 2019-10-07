@@ -1,56 +1,94 @@
 <?php
 /**
- * MjFox Inc.
+ * Plumrocket Inc.
  * NOTICE OF LICENSE
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
  *
- * @package     MjFox shop
- * @copyright   Copyright (c) 2019 MjFox Inc. (http://www.mjfox.com)
- * @license     http://wiki.mjfox.com/wiki/EULA  End-user License Agreement
+ * @package     Plumrocket shop
+ * @copyright   Copyright (c) 2019 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
  */
 
 namespace App\Catalog\Controller\Product;
 
 class Save
 {
-    private $name;
-    private $category;
-    private $sku;
-    private $price;
-    private $description;
-
-    private $fileTmpDirectory;
-    private $uploadFileName;
-
+    /**
+     * @var \App\Catalog\Model\Product
+     */
+    private $product;
+    /**
+     * @var \App\Core\Block\Page
+     */
+    private $page;
+    /**
+     * @var \App\Core\DbAdapter
+     */
     private $dbAdapter;
+    /**
+     * @var \App\Catalog\Model\ProductFactory
+     */
+    private $productFactory;
 
-    public function __construct(\App\Core\DbAdapter $dbAdapter)
+
+    public function __construct(
+        \App\Core\Block\Page $page,
+        \App\Catalog\Model\Product $product,
+        \App\Catalog\Model\ProductFactory $productFactory,
+        \App\Core\DbAdapter $dbAdapter
+        )
     {
-        $this->dbAdapter = $dbAdapter;
-        $this->name = $_POST['name'];
-        $this->category = $_POST['category'];
-        $this->sku = $_POST['sku'];
-        $this->price = $_POST['price'];
-        $this->description = $_POST['description'];
 
-        $this->uploadFileName = $_FILES['image']['name'];
-        $this->fileTmpDirectory = $_FILES['image']['tmp_name'];
+        $this->product = $product;
+        $this->page = $page;
+        $this->dbAdapter = $dbAdapter;
+        $this->productFactory = $productFactory;
     }
 
     public function execute()
     {
-        if (file_exists($this->uploadFileName) !== true) {
-            if (move_uploaded_file($this->fileTmpDirectory, 'uploaded/'.$this->uploadFileName)) {
-                echo "Файли загружено\n";
-            }
-        }else{
-            echo  "Помилка при загрузці файлів\n";
-        }
-       $result =  $this->dbAdapter->query(
-           "INSERT INTO `products` (`id`, `category`, `name`, `sku`, `price`, `image`, `description`)".
-           " VALUES (NULL, '$this->category', '$this->name', '$this->sku', '$this->uploadFileName', '$this->price', '$this->description');"
-       );
+        $errors = [];
 
-        return $result;
+        if(!$_POST['name']){
+            $errors[] = 'No name! <br>';
+        }
+        if(!$_POST['category']){
+            $errors[] = 'No category <br>!';
+        }
+        if(!$_POST['sku']){
+            $errors[] = 'No sku! <br>';
+        }
+        if(!$_POST['price']){
+            $errors[] = 'No price! <br>';
+        }
+        if(!$_POST['description']){
+            $errors[] = 'No description! <br>';
+        }
+        if(!$_FILES['image']['name']){
+            $errors[] = 'No image! <br>';
+        }
+
+        if(!empty($errors)){
+            echo json_encode(['errors' => $errors, 'status' => false] );
+            return;
+        }
+
+        $product = $this->productFactory->create();
+        $product->updateFormData();
+//        $product->setName($_POST['name']);
+//        $product->setCategory($_POST['category']);
+//        $product->setSku($_POST['sku']);
+//        $product->setPrice($_POST['price']);
+//        $product->setDescription($_POST['description']);
+//        $product->setImage($_FILES['image']['name']);
+        $product->imageLoad();
+        $product->upload();
+
+        echo  json_encode(['status' => true, 'message' => 'Product saved'] );
+
     }
 }
-

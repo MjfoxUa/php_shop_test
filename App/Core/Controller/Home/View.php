@@ -48,9 +48,6 @@ class View
 
     public function execute()
     {
-//        $product = $this->productFactory->create();
-//        $product->loadProducts();
-//        $this->productList->setProduct($product);
         $this->page->setTitle('Home');
         $this->page->setMainContentBlock($this->productList);
         $this->page->render();

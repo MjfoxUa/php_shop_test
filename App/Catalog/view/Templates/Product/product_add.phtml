@@ -1,0 +1,107 @@
+<?php /** @var $block \App\Catalog\Block\ProductAdd */?>
+<?php /** @var $block \App\Catalog\Block\CategoryList */?>
+
+<!--<form action="save" method="POST" enctype=multipart/form-data>-->
+<!--  <fieldset>-->
+<!--    <legend align="center">ADD PRODUCT</legend>-->
+<!--    <p align="center">-->
+<!--      <label for="name">Name:</label>-->
+<!--      <input type="text" name="name" placeholder="Add product name" id="name" required >-->
+<!--    </p>-->
+<!--    <p align="center">-->
+<!--      <label for="category">Select category:</label>-->
+<!--      <select size="1" name="category">-->
+<!--          --><?php //foreach ($block->getCategories() as $category): ?>
+<!--        <option value="--><?php //echo $category->getId() ?><!--" > --><?php //echo ucfirst ($category->getName()) ?><!-- </option>-->
+<!--          --><?php //endforeach; ?>
+<!--      </select></p>-->
+<!--    <p align="center">-->
+<!--      <label for="sku">SKU :</label>-->
+<!--      <input type="text" name="sku" placeholder="Add SKU" id="sku" pattern="^[ 0-9]+$" required >-->
+<!--    </p>-->
+<!--    <p align="center">-->
+<!--      <label for="price">Price :</label>-->
+<!--      <input type="text" name="price" placeholder="Add price" id="price" pattern="\d+(\.\d{2})?" required >-->
+<!--    </p>-->
+<!--    <p align="center">-->
+<!--      <label for="description" style="vertical-align: top;">Description: </label>-->
+<!--      <textarea cols="60" rows="5" name="description" placeholder="Add description" id="description"  ></textarea>-->
+<!--    </p>-->
+<!--    <p align="center">-->
+<!--      <label for="image">Add image: </label>-->
+<!--      <input type="file" name="image" id="img" required >-->
+<!--    </p>-->
+<!--    <p align="center">-->
+<!--      <input type="submit" value="ADD PRODUCT"></p>-->
+<!--    </p>-->
+<!--  </fieldset>-->
+<!--</form>-->
+
+<p id="result_form" > </p>
+<form id="product_form" action="save"  method="POST" enctype=multipart/form-data>
+    <div class="product-form">
+      <h1>ADD PRODUCT</h1>
+    <p align="center">
+      <label for="name">Name:</label>
+      <input type="text" name="name" placeholder="Add product name" id="name" class="product-form__input">
+    </p>
+    <p align="center">
+      <label for="category">Select category:</label>
+      <select size="1" name="category" class="product-form__input">
+          <?php foreach ($block->getCategories() as $category): ?>
+            <option value="<?php echo $category->getId() ?>" > <?php echo ucfirst ($category->getName()) ?> </option>
+          <?php endforeach; ?>
+      </select></p>
+    <p align="center">
+      <label for="sku">SKU :</label>
+      <input type="text" name="sku" placeholder="Add SKU" id="sku" pattern="^[ 0-9]+$" class="product-form__input" >
+    </p>
+    <p align="center">
+      <label for="price">Price :</label>
+      <input type="text" name="price" placeholder="Add price" id="price" pattern="\d+(\.\d{2})?" class="product-form__input" >
+    </p>
+    <p align="center">
+      <label for="description" style="vertical-align: top;">Description: </label>
+      <textarea cols="60" rows="5" name="description" placeholder="Add description" id="description"  class="product-form__input" ></textarea>
+    </p>
+    <p align="center">
+      <label for="image">Add image: </label>
+      <input type="file" name="image" id="img" class="product-form__file" style="color:transparent;" onchange="this.style.color = 'black';">
+    </p>
+    <p align="center">
+      <input type="submit" value="ADD PRODUCT" class="product-form__submit"></p>
+    </p>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $(function() {
+        $('#product_form').on('submit', function(e){
+            e.preventDefault();
+            $.ajax({
+                url: this.action,
+                type: 'POST',
+                contentType: false,
+                processData: false,
+                data: new FormData(this),
+                dataType: 'json',
+                success: function(data){
+                    if(!!data){
+                        if(!data.status){
+                            $('#result_form').removeClass();
+                            $('#result_form').addClass('product-form_errors');
+                            data.errors.forEach(function(element) {
+                            $('#result_form').html(data.errors);
+                            });
+                        }else {
+                            $('#result_form').removeClass();
+                            $('#result_form').addClass('product-form_message-save');
+                            $('#result_form').html(data.message);
+                        }
+                    }
+                }
+            });
+        });
+    });
+
+</script>

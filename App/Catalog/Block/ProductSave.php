@@ -15,22 +15,22 @@
 
 namespace App\Catalog\Block;
 
-abstract class Block
+class ProductSave extends Block
 {
-    protected $templatePath;
+    private $productSave;
+    protected $templatePath = '\App\Catalog\view\Templates\Product\product_save.phtml';
 
+    /**
+     * @return \App\Catalog\Model\ProductSave
+     */
+    public function getProductSave(){
+        return $this->productSave;
+    }
 
-    public function toHtml()
-    {
-        if ($this ->templatePath) {
-            $block = $this;
-            ob_start();
-            include BP . $this ->templatePath;
-            $a = ob_get_contents();
-            ob_clean();
-            return $a;
-        }
-
-        throw new \Exception('Дай темплейт! Блок - ' . get_class($this));
+    /**
+     * @param $product
+     */
+    public function setProduct($productSave){
+        $this->productSave = $productSave;
     }
 }

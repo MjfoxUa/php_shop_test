@@ -15,22 +15,30 @@
 
 namespace App\Catalog\Block;
 
-abstract class Block
+class ProductAdd extends Block
 {
-    protected $templatePath;
+    /**
+     * @var \App\Catalog\Model\CategoryCollection
+     */
+    private $categoryCollection;
+
+    /**
+     * @var string
+     */
+    protected $templatePath = '\App\Catalog\view\Templates\Product\product_add.phtml';
 
 
-    public function toHtml()
+    public function __construct( \App\Catalog\Model\CategoryCollection $categoryCollection)
     {
-        if ($this ->templatePath) {
-            $block = $this;
-            ob_start();
-            include BP . $this ->templatePath;
-            $a = ob_get_contents();
-            ob_clean();
-            return $a;
-        }
-
-        throw new \Exception('Дай темплейт! Блок - ' . get_class($this));
+        $this->categoryCollection = $categoryCollection;
     }
+
+    /**
+     * @return \App\Catalog\Model\Category[]
+     */
+    public function getCategories()
+    {
+        return $this->categoryCollection->getItems();
+    }
+
 }

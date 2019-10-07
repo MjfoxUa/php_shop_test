@@ -36,14 +36,15 @@ class ProductCollection
     public function load()
     {
         if ($this->categoryId) {
-            $sql = "SELECT * FROM `products` WHERE `category` = '$this->categoryId'";
+            $sql = "SELECT products.*, category.name AS category_name 
+                                                     FROM products LEFT JOIN category 
+                                                     ON products.category=category.id 
+                                                     WHERE `category` = '$this->categoryId'";
             }else
-
-            $sql = "SELECT * FROM `products`";
-
-
+            $sql = "SELECT products.*, category.name AS category_name 
+                                                     FROM products LEFT JOIN category 
+                                                     ON products.category=category.id";
             $productsData = $this->dbAdapter->select($sql);
-
             foreach ( $productsData as $productData) {
                 $product = $this->productFactory->create();
                 $product->setId($productData['id']);
@@ -55,6 +56,7 @@ class ProductCollection
                 $product->setDescription($productData['description']);
                 $product->setCreateAt($productData['create_at']);
                 $product->setUpdateAt($productData['update_at']);
+                $product->setCategoryName($productData['category_name']);
                 $this->items [] = $product;
                 }
         return $this;

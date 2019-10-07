@@ -3,7 +3,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="/shop/App/Core/view/theme/default/styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="/shop/App/Core/view/theme/default/styles/styles.css">
+  <script type="text/javascript" src="/shop/App/Core/js/jquery.js"></script>
+  <script type="text/javascript" src="/shop/App/Core/js/jquery.serializejson.js"></script>
     <title><?php  echo $this->getTitle(); ?></title>
 </head>
     <body>
@@ -13,12 +15,12 @@
             <li><a href="http://localhost/shop/">Home</a></li>
             <?php echo $this->getCategoryList()->toHtml();?>
             <li><a href="">Abaut Us</a></li>
+            <li><a href="http://localhost/shop/catalog/product/add">Add New PRODUCT</a></li>
           </ul>
       </div>
 
       <div>
           <?php echo $this->getMainContentBlock()->toHtml(); ?>
       </div>
-
     </body>
 </html>

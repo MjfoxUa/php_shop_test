@@ -21,19 +21,28 @@ class Request
         public function getModuleName()
         {
             $pathsParts = $this->getParts();
+            if(isset($pathsParts[1])){
             return ucfirst($pathsParts[1]);
+            }
+            return 'Core';
         }
 
         public function getControllerName()
         {
             $pathsParts = $this->getParts();
-            return ucfirst($pathsParts[2]);
+            if(isset($pathsParts[2])){
+                return ucfirst($pathsParts[2]);
+            }
+            return 'Home';
         }
 
         public function getActionName()
         {
             $pathsParts = $this->getParts();
-            return ucfirst($pathsParts[3]);
+            if(isset($pathsParts[3])){
+                return ucfirst($pathsParts[3]);
+            }
+            return 'View';
         }
 
         private function getParts()

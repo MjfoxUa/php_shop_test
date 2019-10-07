@@ -20,8 +20,8 @@ class Product
     private $description;
     private $createAt;
     private $updateAt;
-    private $productList;
     private $id;
+    private $category_name;
 
     /**
      * @var \App\Core\DbAdapter
@@ -35,7 +35,9 @@ class Product
 
     public function load($id)
     {
-       $productData =  $this->dbAdapter->selectRow("SELECT * FROM `products` WHERE `id`='$id'");
+        $productData =  $this->dbAdapter->selectRow("SELECT products.*, category.name AS category_name 
+                                                     FROM products LEFT JOIN category 
+                                                     ON products.category=category.id  WHERE  products.`id`='$id'");
         $this->setId($productData['id']);
         $this->setName($productData['name']);
         $this->setSku($productData['sku']);
@@ -45,6 +47,38 @@ class Product
         $this->setDescription($productData['description']);
         $this->setCreateAt($productData['create_at']);
         $this->setUpdateAt($productData['update_at']);
+        $this->setCategoryName($productData['category_name']);
+    }
+
+    public function updateFormData()
+    {
+        $this->setName($_POST['name']);
+        $this->setCategory($_POST['category']);
+        $this->setSku($_POST['sku']);
+        $this->setPrice($_POST['price']);
+        $this->setDescription($_POST['description']);
+        $this->setImage($_FILES['image']['name']);
+    }
+
+
+    public function imageLoad()
+    {
+        if (file_exists($_FILES['image']['name']) !== true) {
+            if (move_uploaded_file($_FILES['image']['tmp_name'], 'uploaded/'.$_FILES['image']['name'])) {
+                return "Files uploaded";
+            }
+        }else{
+                return "Error uploading files";
+        }
+    }
+
+    public function upload()
+    {
+        $result =  $this->dbAdapter->query(
+            "INSERT INTO `products` (`id`, `category`, `name`, `sku`, `price`, `image`, `description`)".
+            " VALUES (NULL, '$this->category', '$this->name', '$this->sku','$this->price', '$this->image', '$this->description');"
+        );
+        return $result;
     }
 
     public function setId($id)
@@ -80,13 +114,6 @@ class Product
         return $this->image;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
     /**
      * @param mixed $name
      * @return Product
@@ -184,20 +211,18 @@ class Product
     }
 
     /**
-     * @param array $productsList
-     * @return $this
+     * @return mixed
      */
-    public function setProductsList(array $productsList)
+    public function getCategoryName()
     {
-        $this->productList = $productsList;
-        return $this;
+        return $this->category_name;
     }
 
     /**
-     * @return mixed
+     * @param mixed $category_name
      */
-    public function getProductList()
+    public function setCategoryName($category_name)
     {
-        return $this->productList;
+        $this->category_name = $category_name;
     }
 }
