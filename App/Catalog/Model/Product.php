@@ -81,12 +81,36 @@ class Product
         return $result;
     }
 
+    public function updateProduct($id)
+    {
+        if(!empty($this->image)){
+            $imageChange = "image=" . $this->dbAdapter->quote($this->image) . ",";
+        } else {
+            $imageChange = null;
+        }
+
+        $result =  $this->dbAdapter->query("UPDATE `products` SET `category`='$this->category',".
+            "`name`='$this->name',`sku`='$this->sku',`price`='$this->price',$imageChange".
+            "`description`='$this->description' WHERE `id`= '$id'"
+        );
+        return $result;
+    }
+
+    public function deleteProduct()
+    {
+        $id = $this->getId();
+        if(file_exists('uploaded/'.$this->getImage())){
+            unlink('uploaded/'.$this->getImage());
+        }
+        $result = $this->dbAdapter->query("DELETE FROM `products` WHERE `id`= '$id'");
+        return $result;
+    }
+
     public function setId($id)
     {
         $this->id = $id;
         return $this;
     }
-
     public function getId()
     {
         return $this->id;
@@ -180,6 +204,10 @@ class Product
         return $this;
     }
 
+    public function getCategory()
+    {
+        return $this->category;
+    }
     /**
      * @param $description
      * @return $this

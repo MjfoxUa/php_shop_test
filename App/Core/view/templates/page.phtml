@@ -5,20 +5,20 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/shop/App/Core/view/theme/default/styles/styles.css">
   <script type="text/javascript" src="/shop/App/Core/js/jquery.js"></script>
-  <script type="text/javascript" src="/shop/App/Core/js/jquery.serializejson.js"></script>
     <title><?php  echo $this->getTitle(); ?></title>
 </head>
     <body>
+    <div class="header_logo">
+      <a href="http://localhost/shop/"><img src="/shop/App/Core/view/theme/default/image/shop-icon.gif" alt="logo" width="100px"></a>
+    </div>
       <div class="header_main">
-        <img src="/shop/App/Core/view/theme/default/image/shop-icon.gif" alt="logo" width="100px"
           <ul class="header_main__menu">
             <li><a href="http://localhost/shop/">Home</a></li>
             <?php echo $this->getCategoryList()->toHtml();?>
-            <li><a href="">Abaut Us</a></li>
-            <li><a href="http://localhost/shop/catalog/product/add">Add New PRODUCT</a></li>
+            <li><a href="">Abaut us</a></li>
+            <li><a href="http://localhost/shop/catalog/product/add">Add new product</a></li>
           </ul>
       </div>
-
       <div>
           <?php echo $this->getMainContentBlock()->toHtml(); ?>
       </div>

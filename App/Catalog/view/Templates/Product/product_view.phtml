@@ -1,6 +1,11 @@
 <?php /** @var $block \App\Catalog\Block\ProductView */?>
 
+<p id="delete" ></p>
 <div class="product-info">
+  <div class="product-info__edit">
+    <a  id="product_delete" data-product-id="<?php echo $block->getProduct()->getId() ?>"><b>DELETE PRODUCT</b></a>
+    <a href="/shop/catalog/product/edit/id/<?php echo $block->getProduct()->getId() ?>" ><b>EDIT PRODUCT</b></a>
+  </div>
   <div class="product-info__category">
     <p><?php echo ($block->getProduct()->getCategoryName()); ?></p>
   </div>
@@ -22,8 +27,11 @@
       <button>Add to Cart</button>
     </div>
   </div>
-
   <div class="product-info__description">
     <p> Infirmation : <?php echo ($block->getProduct()->getDescription()); ?></p>
   </div>
 </div>
+<script>
+
+</script>
+<script type="text/javascript" src="/shop/App/Core/js/product_delete.js"></script>

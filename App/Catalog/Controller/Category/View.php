@@ -64,9 +64,7 @@ class View
     {
         $categoryUrl = key($this->request->getParams());
         $this->page->setTitle(ucfirst($categoryUrl));
-
         $this->productList->setCategory($categoryUrl);
-
         $this->page->setMainContentBlock($this->productList);
         $this->page->render();
     }

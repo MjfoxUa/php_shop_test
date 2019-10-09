@@ -45,6 +45,15 @@ class DbAdapter
     }
 
     /**
+     * @param $string
+     * @return string
+     */
+    public function quote($string)
+    {
+        return $this->pdo->quote($string);
+    }
+
+    /**
      * @param string $sql
      * @return false|\PDOStatement
      */

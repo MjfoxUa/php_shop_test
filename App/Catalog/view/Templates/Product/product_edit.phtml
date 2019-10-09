@@ -1,0 +1,42 @@
+<?php /** @var $block \App\Catalog\Block\ProductEdit */?>
+<?php /** @var $block \App\Catalog\Block\CategoryList */?>
+<?php /** @var $block \App\Catalog\Model\Product */?>
+
+<p id="result_form" > </p>
+  <form id="product_form" action="/shop/catalog/product/save"  method="POST" enctype=multipart/form-data>
+  <div class="product-form">
+    <h1>PRODUCT</h1>
+    <?php if($block->product->getImage()): ?>
+    <div class="product-info__image-edit" align="center">
+      <img src="<?php echo ('/shop/uploaded/'.$block->product->getImage()); ?>" alt="Product Image">
+    </div>
+    <?php endif; ?>
+      <label for="name">NAME :</label>
+      <input type="text" name="name" placeholder="Add product name" id="name"
+             class="product-form__input" value="<?php echo $block->product->getName() ?>">
+      <label for="category">CATEGORY :</label>
+      <select size="1" name="category" class="product-form__input" >
+          <?php foreach ($block->getCategories() as $category): ?>
+              <option value="<?php echo $category->getId() ?>"
+              <?php if($category->getId() == $block->product->getCategory()):?>
+                  <?php echo 'selected';?><?php endif; ?>>
+                  <?php echo ucfirst ($category->getName()) ?> </option>
+          <?php endforeach; ?>
+      </select>
+      <label for="sku">SKU :</label>
+      <input type="text" name="sku" placeholder="Add SKU" id="sku" pattern="^[ 0-9]+$"
+             class="product-form__input" value="<?php echo $block->product->getSku() ?>" >
+      <label for="price">PRICE :</label>
+<!--    pattern="\d+(\.\d{1,2})$/?"-->
+      <input type="text" name="price" placeholder="Add price" id="price"
+             class="product-form__input" value="<?php echo $block->product->getPrice() ?>" >
+      <label for="description" style="vertical-align: top;">DESCRIPTION :</label>
+      <textarea cols="60" rows="5" name="description" placeholder="Add description" id="description"
+                class="product-form__input"><?php echo $block->product->getDescription() ?></textarea>
+      <label for="image">IMAGE :</label>
+      <input type="file" name="image" id="img" class="product-form__file">
+      <input type="submit" value="SAVE PRODUCT" class="product-form__submit">
+      <input type="hidden" name="id" value="<?= $block->product->getId() ?>" />
+  </div>
+</form>
+<script type="text/javascript" src="/shop/App/Core/js/product_save.js"></script>

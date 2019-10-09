@@ -15,44 +15,32 @@
 
 namespace App\Catalog\Controller\Product;
 
-class Add
+class Delete
 {
+
     /**
-     * @var \App\Core\Block\Page
+     * @var \App\Core\Request
      */
-    private $page;
+    private $request;
+
     /**
      * @var \App\Catalog\Model\ProductFactory
      */
     private $productFactory;
-    /**
-     * @var \App\Catalog\Block\ProductEdit
-     */
-    private $productEdit;
 
-    /**
-     * Add constructor.
-     *
-     * @param \App\Core\Block\Page              $page
-     * @param \App\Catalog\Model\ProductFactory $productFactory
-     * @param \App\Catalog\Block\ProductEdit    $productEdit
-     */
-    public function __construct(
-        \App\Core\Block\Page $page,
-        \App\Catalog\Model\ProductFactory $productFactory,
-        \App\Catalog\Block\ProductEdit $productEdit
-    ) {
-        $this->page = $page;
+    public function __construct(\App\Core\Request $request,
+                                \App\Catalog\Model\ProductFactory $productFactory)
+    {
+        $this->request = $request;
         $this->productFactory = $productFactory;
-        $this->productEdit = $productEdit;
     }
 
     public function execute()
     {
-        $this->page->setTitle('Add product');
+        $id = $this->request->getParams();
         $product = $this->productFactory->create();
-        $this->productEdit->setProduct($product);
-        $this->page->setMainContentBlock($this->productEdit);
-        $this->page->render();
+        $product->load($id['id']);
+        $product->deleteProduct();
+        echo  json_encode(['status' => true, 'message' => 'Product was deleted!'] );
     }
 }

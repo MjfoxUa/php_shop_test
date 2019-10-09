@@ -16,6 +16,9 @@
   left: 5%;
 }
 
+.product-info__image-edit > img {
+  width: 200px;
+}
 .product-info__total {
   position: relative;
   float: right;
@@ -66,17 +69,18 @@
   margin-bottom: 15px;
 }
 
-.header_main > li {
-  position: relative;
-  display: inline;
-  border: 1px solid #ffb600;
-  background: #ffb600;
+.header_main__menu {
   border-radius: 30px;
-  font-size: 30px;
-
+  background: rgba(159, 159, 159, 0.22);
+  display: flex;
+  flex-direction: row;
 }
 
-.header_main > li > a {
+.header_main__menu > li {
+  list-style: none;
+}
+
+.header_main__menu > li > a {
   text-decoration: none;
   color: #004a84;
   font-size: 24px;
@@ -84,35 +88,30 @@
   margin: 10px;
 }
 
-.header_main > li:hover {
-  background: white;
+.header_main__menu > li > a:hover {
+  color: #ffb600;
 }
 
 .product-list{
-  margin-right: 5%;
-  margin-left: 5%;
-  margin-bottom: 5%;
-  position: absolute;
-  background: #f1f1f1;
-  border: 1.5px solid #9f9f9f;
+  background: rgba(159, 159, 159, 0.22);
+  border-radius: 30px;
 }
 
 .product-list > a {
-  margin: 25px;
-  text-decoration: none;
-  float: right;
-  height: 300px;
-  width: 500px;
+  border-radius: 30px;
+  display: flex;
+
 }
 
 .product-list > a :hover {
    background: white;
+   border-radius: 30px;
  }
 
 .product-list__info > li > img {
+  border-radius: 30px;
   border: 1px solid #9f9f9f;
   width: 200px;
-  height: 150px;
   margin: 25px;
 }
 
@@ -120,6 +119,20 @@
   width: 200px;
   float: right;
   margin: 20px;
+}
+
+.product-info__edit >a {
+  margin: 10px;
+  float: right;
+  font-family: Helvetica, sans-serif;
+  font-size: 20px;
+  color: #004a84;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.product-info__edit >a:hover {
+  color: #ffb600;
 }
 
 .product-list__info {
@@ -139,6 +152,9 @@
   font-family: Helvetica, sans-serif;
   color: #004a84;
   background: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .product-form {
@@ -158,6 +174,7 @@
   height: 20px;
   background: #f1f1f1;
   outline:none;
+  margin-bottom: 15px;
 }
 
 .product-form__input:focus {
@@ -174,6 +191,7 @@
   font-size: 30px;
   color: #004a84;
   outline:none;
+  margin-top: 15px;
   margin-bottom: 25px;
   cursor:pointer;
 }
@@ -184,7 +202,6 @@
 }
 
 .product-form_errors {
-  border-radius: 30px;
   padding-top: 5px;
   padding-left: 50px;
   padding-bottom: 5px;
@@ -198,5 +215,13 @@
   padding-left: 50px;
   padding-bottom: 5px;
   background: #00a253;
+  color: #f1f1f1;
+}
+
+.delete-result{
+  padding-top: 5px;
+  padding-left: 50px;
+  padding-bottom: 5px;
+  background: brown;
   color: #f1f1f1;
 }

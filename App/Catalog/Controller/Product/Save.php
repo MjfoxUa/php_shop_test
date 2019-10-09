@@ -68,26 +68,28 @@ class Save
         if(!$_POST['description']){
             $errors[] = 'No description! <br>';
         }
-        if(!$_FILES['image']['name']){
+        if(!$_POST['id']){
+            if(!$_FILES['image']['name']){
             $errors[] = 'No image! <br>';
+            }
         }
-
         if(!empty($errors)){
             echo json_encode(['errors' => $errors, 'status' => false] );
             return;
         }
 
         $product = $this->productFactory->create();
-        $product->updateFormData();
-//        $product->setName($_POST['name']);
-//        $product->setCategory($_POST['category']);
-//        $product->setSku($_POST['sku']);
-//        $product->setPrice($_POST['price']);
-//        $product->setDescription($_POST['description']);
-//        $product->setImage($_FILES['image']['name']);
-        $product->imageLoad();
-        $product->upload();
 
+        if($_POST['id']){
+            $id = $_POST['id'];
+            $product->updateFormData();
+            $product->imageLoad();
+            $product->updateProduct($id);
+        } else {
+            $product->updateFormData();
+            $product->imageLoad();
+            $product->upload();
+        }
         echo  json_encode(['status' => true, 'message' => 'Product saved'] );
 
     }

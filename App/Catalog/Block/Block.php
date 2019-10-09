@@ -31,6 +31,6 @@ abstract class Block
             return $a;
         }
 
-        throw new \Exception('Дай темплейт! Блок - ' . get_class($this));
+        throw new \Exception('There is no such template' . get_class($this));
     }
 }
