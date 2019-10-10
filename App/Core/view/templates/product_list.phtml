@@ -7,14 +7,10 @@
         <div class="product-list__info">
             <li>
                 <img src="<?php echo ('/shop/uploaded/'.$products->getImage() ); ?>" alt="Product Image">
-              <div class="text">
                 Name: <b><?php echo $products->getName()  ?></b><br>
                 Price :<i> <?php echo $products->getPrice()?></i> $<br>
                 Category :<i> <?php echo $products->getCategoryName() ?></i>
-                <div class="product-info__add-to-cart-button">
                   <button>Add to cart</button>
-                </div>
-              </div>
             </li>
         </div>
       </a>

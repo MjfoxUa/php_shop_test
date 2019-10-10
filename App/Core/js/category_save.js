@@ -1,5 +1,5 @@
 $(function() {
-    $('#product_form').on('submit', function(e){
+    $('#category-form').on('submit', function(e){
         e.preventDefault();
         $.ajax({
             url: this.action,
@@ -14,14 +14,14 @@ $(function() {
                         $('#result_form').removeClass();
                         $('#result_form').addClass('product-form_errors');
                         data.errors.forEach(function(element) {
-                            $('#result_form').html(data.errors);
-                            setTimeout(function (){window.location = "http://localhost/shop/catalog/product/view/id/"+data.id}, 2500);
+                        $('#result_form').html(data.errors);
+                        setTimeout(function (){window.location = "/shop/catalog/category/add/"}, 2500);
                         });
                     }else {
                         $('#result_form').removeClass();
                         $('#result_form').addClass('product-form_message-save');
                         $('#result_form').html(data.message);
-                        setTimeout(function (){window.location = "http://localhost/shop/catalog/product/view/id/"+data.id}, 2500);
+                        setTimeout(function (){window.location = "/shop/catalog/category/add/"}, 2500);
                     }
                 }
             }

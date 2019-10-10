@@ -77,20 +77,13 @@ class Save
             echo json_encode(['errors' => $errors, 'status' => false] );
             return;
         }
-
         $product = $this->productFactory->create();
+        $product->setData($_POST);
+        $product->setImage($_FILES['image']['name']);
+        $product->imageLoad();
+        $product->save();
+        $id = $product->lastId($_POST);
 
-        if($_POST['id']){
-            $id = $_POST['id'];
-            $product->updateFormData();
-            $product->imageLoad();
-            $product->updateProduct($id);
-        } else {
-            $product->updateFormData();
-            $product->imageLoad();
-            $product->upload();
-        }
-        echo  json_encode(['status' => true, 'message' => 'Product saved'] );
-
+        echo  json_encode(['status' => true, 'message' => 'Product saved', 'id' => $id ] );
     }
 }

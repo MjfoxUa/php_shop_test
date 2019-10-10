@@ -50,50 +50,57 @@ class Product
         $this->setCategoryName($productData['category_name']);
     }
 
-    public function updateFormData()
+
+    public function lastId($array)
     {
-        $this->setName($_POST['name']);
-        $this->setCategory($_POST['category']);
-        $this->setSku($_POST['sku']);
-        $this->setPrice($_POST['price']);
-        $this->setDescription($_POST['description']);
-        $this->setImage($_FILES['image']['name']);
+        if(!$array['id']){
+            return $this->dbAdapter->getDriver()->lastInsertId();
+        }
+        return $this->getId();
     }
 
+    public function setData(array $array)
+    {
+        if ($array['id']) {
+            $this->setId($array['id']);
+        }
+        $this->setName($array['name']);
+        $this->setCategory($array['category']);
+        $this->setSku($array['sku']);
+        $this->setPrice($array['price']);
+        $this->setDescription($array['description']);
+
+    }
+
+    public function save()
+    {
+        if($this->id){
+            if(!empty($this->image)){
+                $imageChange = "image=" . $this->dbAdapter->quote($this->image) . ",";
+            } else {
+                $imageChange = null;
+            }
+            $result =  $this->dbAdapter->query("UPDATE `products` SET `category`='$this->category',".
+                "`name`='$this->name',`sku`='$this->sku',`price`='$this->price',$imageChange".
+                "`description`='$this->description' WHERE `id`= '$this->id'"
+            );
+        } else{
+
+            $result =  $this->dbAdapter->query(
+                "INSERT INTO `products` (`id`, `category`, `name`, `sku`, `price`, `image`, `description`)".
+                " VALUES (NULL, '$this->category', '$this->name', '$this->sku','$this->price', '$this->image', '$this->description');"
+            );
+        }
+        return $result;
+    }
 
     public function imageLoad()
     {
         if (file_exists($_FILES['image']['name']) !== true) {
-            if (move_uploaded_file($_FILES['image']['tmp_name'], 'uploaded/'.$_FILES['image']['name'])) {
-                return "Files uploaded";
-            }
+            return move_uploaded_file($_FILES['image']['tmp_name'], 'uploaded/'.$_FILES['image']['name']);
         }else{
                 return "Error uploading files";
         }
-    }
-
-    public function upload()
-    {
-        $result =  $this->dbAdapter->query(
-            "INSERT INTO `products` (`id`, `category`, `name`, `sku`, `price`, `image`, `description`)".
-            " VALUES (NULL, '$this->category', '$this->name', '$this->sku','$this->price', '$this->image', '$this->description');"
-        );
-        return $result;
-    }
-
-    public function updateProduct($id)
-    {
-        if(!empty($this->image)){
-            $imageChange = "image=" . $this->dbAdapter->quote($this->image) . ",";
-        } else {
-            $imageChange = null;
-        }
-
-        $result =  $this->dbAdapter->query("UPDATE `products` SET `category`='$this->category',".
-            "`name`='$this->name',`sku`='$this->sku',`price`='$this->price',$imageChange".
-            "`description`='$this->description' WHERE `id`= '$id'"
-        );
-        return $result;
     }
 
     public function deleteProduct()

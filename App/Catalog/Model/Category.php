@@ -40,6 +40,23 @@ class Category
         return $this;
     }
 
+    public function save(array $array)
+    {
+        $categoryName = $array['name'];
+        $categoryUrl = $array['url'];
+        $stmt = $this->dbAdapter->getDriver()->prepare(
+            'INSERT INTO `category` (`id`, `name`, `url`) VALUES (null, :name, :url )'
+        );
+        $stmt->execute([':name' => $categoryName, ':url' => $categoryUrl ]);
+        return $this;
+    }
+
+    public function categoryDelete()
+    {
+        $result = $this->dbAdapter->query("DELETE FROM `category` WHERE `id`= '$this->id'");
+        return $result;
+    }
+
     /**
      * @return mixed
      */

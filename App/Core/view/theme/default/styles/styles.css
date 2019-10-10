@@ -45,6 +45,8 @@
   font-style: italic;
 }
 .product-info__add-to-cart-button > button {
+  display: flex;
+  flex-direction: column;
   border: 1px solid #ffb600;
   background: #ffb600;
   width: 110%;
@@ -73,6 +75,7 @@
   border-radius: 30px;
   background: rgba(159, 159, 159, 0.22);
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
 }
 
@@ -93,32 +96,35 @@
 }
 
 .product-list{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
   background: rgba(159, 159, 159, 0.22);
-  border-radius: 30px;
 }
 
 .product-list > a {
-  border-radius: 30px;
-  display: flex;
-
+  border-radius: 10px;
+  text-decoration: none;
 }
 
 .product-list > a :hover {
    background: white;
-   border-radius: 30px;
+   border-radius: 10px;
  }
 
 .product-list__info > li > img {
-  border-radius: 30px;
+  border-radius: 10px;
   border: 1px solid #9f9f9f;
   width: 200px;
-  margin: 25px;
 }
 
-.product-list__info > li > .text {
+.product-list__info > li > a {
+  text-decoration: none;
+}
+.product-list__info > li{
   width: 200px;
-  float: right;
-  margin: 20px;
+  height: 100%;
+  margin: 4px;
 }
 
 .product-info__edit >a {
@@ -137,11 +143,27 @@
 
 .product-list__info {
   list-style-type: none;
-  display: inline;
+  display: flex;
+  width: 260px;
+  justify-content: center;
   margin: 20px;
   font-size: 20px;
   font-family: Helvetica, sans-serif;
   color: #004a84;
+}
+
+.product-list__info button {
+  width: 150px;
+  height: 40px;
+  border: 1px solid #ffb600;
+  background: #ffb600;
+  border-radius: 10px;
+  font-size: 20px;
+  color: #004a84;
+  outline:none;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  cursor:pointer;
 }
 
 .product-info__add-to-cart-button {
@@ -149,6 +171,15 @@
 }
 
 .product-form {
+  font-family: Helvetica, sans-serif;
+  color: #004a84;
+  background: #f1f1f1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.category-form{
   font-family: Helvetica, sans-serif;
   color: #004a84;
   background: #f1f1f1;
@@ -165,6 +196,18 @@
   color: #9f9f9f;
 }
 .product-form__input {
+  padding-left: 10px;
+  font-family: Helvetica, sans-serif;
+  color: #004a84;
+  border: 1px solid #ffb600;
+  border-radius: 5px;
+  width: 200px;
+  height: 20px;
+  background: #f1f1f1;
+  outline:none;
+  margin-bottom: 15px;
+}
+.category__input{
   padding-left: 10px;
   font-family: Helvetica, sans-serif;
   color: #004a84;
@@ -194,6 +237,24 @@
   margin-top: 15px;
   margin-bottom: 25px;
   cursor:pointer;
+}
+
+.category-form__submit{
+  padding: 10px;
+  border: 1px solid #ffb600;
+  background: #ffb600;
+  border-radius: 30px;
+  font-size: 30px;
+  color: #004a84;
+  outline:none;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  cursor:pointer;
+}
+
+.category-form__submit:hover{
+  background: white;
+  outline:none;
 }
 
 .product-form__submit:hover{

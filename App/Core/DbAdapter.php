@@ -85,6 +85,14 @@ class DbAdapter
     }
 
     /**
+     * @return \PDO
+     */
+    public function getDriver() : \PDO
+    {
+        return $this->pdo;
+    }
+
+    /**
      * @param string $sql
      * @return array | bool
      */
