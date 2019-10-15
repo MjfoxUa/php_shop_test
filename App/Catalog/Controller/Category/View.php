@@ -62,9 +62,14 @@ class View
 
     public function execute()
     {
-        $categoryUrl = key($this->request->getParams());
+        $name = $this->request->getParam('sort');
+        $direction = $this->request->getParam('order');
+        $categoryUrl = $this->request->getParam('url');
         $this->page->setTitle(ucfirst($categoryUrl));
         $this->productList->setCategory($categoryUrl);
+        if($name){
+            $this->productList->setOrder($name, $direction);
+        }
         $this->page->setMainContentBlock($this->productList);
         $this->page->render();
     }

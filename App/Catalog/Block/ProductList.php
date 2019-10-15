@@ -44,4 +44,39 @@ class ProductList extends Block
         $this->productCollection->setCategoryFilter($category->getId());
         return $this;
     }
+
+    public function setOrder($name, $direction)
+    {
+
+        $this->productCollection->setOrder($name, $direction);
+        return $this;
+    }
+
+    public function setSearch($searchString)
+    {
+        $this->productCollection->setSearch($searchString);
+        return $this;
+    }
+
+    private function updateQueryString($paramKey, $paramValue)
+    {
+        $params = $_GET;
+        $params[$paramKey] = $paramValue;
+
+        $result = [];
+        foreach ($params as $key => $value){
+            $result[] = $key . '=' . $value;
+        }
+        return '?' . implode("&", $result);
+    }
+
+    public function getOrderUrl($paramValue)
+    {
+        return $this->updateQueryString('order', $paramValue);
+    }
+
+    public function getSortUrl($paramValue)
+    {
+        return $this->updateQueryString('sort', $paramValue);
+    }
 }

@@ -1,6 +1,15 @@
 <?php /** @var $block \App\Catalog\Block\ProductView */?>
 <?php /** @var $block \App\Catalog\Block\ProductList */?>
 
+<div class="sort-products">
+  <b>Sort by :</b>
+  <a href="<?php echo $block->getSortUrl('price') ?>" >price</a><div class="sort-products__vl"></div>
+  <a href="<?php echo $block->getSortUrl('name') ?>">name</a><div class="sort-products__vl"></div>
+  <a href="<?php echo $block->getSortUrl('create_at') ?>">new products</a>
+  <b>From :</b>
+  <a href="<?php echo $block->getOrderUrl('asc') ?>" class="less">less</a><div class="sort-products__vl"></div>
+  <a href="<?php echo $block->getOrderUrl('desc') ?>" class="bigger">bigger</a>
+</div>
 <div class="product-list">
     <?php foreach ($block->getProduct() as $products): ?>
       <a href="/shop/catalog/product/view/id/<?php echo $products->getId() ?>">

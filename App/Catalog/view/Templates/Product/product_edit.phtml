@@ -24,7 +24,7 @@
           <?php endforeach; ?>
       </select>
       <label for="sku">SKU :</label>
-      <input type="text" name="sku" placeholder="Add SKU" id="sku" pattern="^[ 0-9]+$"
+      <input type="text" name="sku" placeholder="Add SKU" id="sku" required"
              class="product-form__input" value="<?php echo $block->product->getSku() ?>" >
       <label for="price" >PRICE :</label>
       <input type="text" name="price" placeholder="Add price" id="price" pattern="\d+(\.\d{1,2})$/?"

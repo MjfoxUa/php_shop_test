@@ -10,13 +10,21 @@
     <body>
     <div class="header_logo">
       <a href="http://localhost/shop/"><img src="/shop/App/Core/view/theme/default/image/shop-icon.gif" alt="logo" width="100px"></a>
+
+      <form action="http://localhost/shop/catalog/search/result" class="search-form">
+        <input type="text" name="q">
+        <input type="submit" value="Search" class="search-form__button">
+      </form>
+
     </div>
       <div class="header_main">
           <ul class="header_main__menu">
-            <li><a href="http://localhost/shop/">HOME</a></li>
-            <?php echo $this->getCategoryList()->toHtml();?>
-            <li><a href="http://localhost/shop/catalog/category/add">CATEGORY</a></li>
-            <li><a href="http://localhost/shop/catalog/product/add">PRODUCT</a></li>
+            <li><a href="http://localhost/shop/"><b>HOME</b></a></li>
+            <p><b>Categorys :</b></p>
+              <?php echo $this->getCategoryList()->toHtml();?>
+            <p><b>Edit :</b></p>
+            <li><a href="http://localhost/shop/catalog/category/add"><b>CATEGORY</b></a></li>
+            <li><a href="http://localhost/shop/catalog/product/add"><b>PRODUCT</b></a></li>
           </ul>
       </div>
       <div>

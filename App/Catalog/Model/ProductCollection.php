@@ -21,6 +21,8 @@ class ProductCollection
     private $dbAdapter;
     private $items= [];
     private $categoryId;
+    private $order;
+    public  $search;
 
     public function __construct(\App\Core\DbAdapter $dbAdapter, ProductFactory $productFactory )
     {
@@ -33,35 +35,52 @@ class ProductCollection
         $this->categoryId = $categoryId;
         return $this;
     }
+
+
     public function load()
     {
+        $main = 'SELECT products.*, category.name AS category_name FROM products LEFT JOIN category ON products.category=category.id';
+        $where = '';
         if ($this->categoryId) {
-            $sql = "SELECT products.*, category.name AS category_name 
-                                                     FROM products LEFT JOIN category 
-                                                     ON products.category=category.id 
-                                                     WHERE `category` = '$this->categoryId'";
-            }else
-            $sql = "SELECT products.*, category.name AS category_name 
-                                                     FROM products LEFT JOIN category 
-                                                     ON products.category=category.id";
-            $productsData = $this->dbAdapter->select($sql);
-            foreach ( $productsData as $productData) {
-                $product = $this->productFactory->create();
-                $product->setId($productData['id']);
-                $product->setName($productData['name']);
-                $product->setSku($productData['sku']);
-                $product->setPrice($productData['price']);
-                $product->setImage($productData['image']);
-                $product->setCategory($productData['category']);
-                $product->setDescription($productData['description']);
-                $product->setCreateAt($productData['create_at']);
-                $product->setUpdateAt($productData['update_at']);
-                $product->setCategoryName($productData['category_name']);
-                $this->items [] = $product;
-                }
+            $where = "WHERE `category` = '$this->categoryId'";
+        }
+
+        if($this->search) {
+            $where = "WHERE products.name  LIKE '%{$this->search}%' OR `description`  LIKE '%{$this->search}%' OR `sku`  LIKE '%{$this->search}%'";
+        }
+        $sort = $this->order;
+
+        $productsData = $this->dbAdapter->select("$main $where $sort");
+        foreach ( $productsData as $productData) {
+            $product = $this->productFactory->create();
+            $product->setId($productData['id']);
+            $product->setName($productData['name']);
+            $product->setSku($productData['sku']);
+            $product->setPrice($productData['price']);
+            $product->setImage($productData['image']);
+            $product->setCategory($productData['category']);
+            $product->setDescription($productData['description']);
+            $product->setCreateAt($productData['create_at']);
+            $product->setUpdateAt($productData['update_at']);
+            $product->setCategoryName($productData['category_name']);
+            $this->items[] = $product;
+        }
         return $this;
     }
 
+    public function setSearch($string)
+    {
+        $this->search = $string;
+        return $this;
+    }
+
+    public function setOrder($name,$direction)
+    {
+        $direction = strtoupper($direction);
+        $this->order = "ORDER BY `$name` $direction";
+        return $this;
+    }
+    
     public function getItems()
     {
         $this->load();

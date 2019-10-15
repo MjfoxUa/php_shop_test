@@ -29,6 +29,7 @@ class Router
         $action = $request->getActionName();
         $resultAction = "\App\\" . $module . "\\Controller\\" . $controller . "\\" . $action;
 
+
         if (class_exists($resultAction)) {
             $action = $this->objectManager->get($resultAction);
         } else {

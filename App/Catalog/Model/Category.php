@@ -105,7 +105,7 @@ class Category
 
     public function getCategoryUrl()
     {
-        return '/shop/catalog/category/view/'.$this->getUrl();
+        return '/shop/catalog/category/view/url/'.$this->getUrl();
     }
     /**
      * @return mixed

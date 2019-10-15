@@ -1,16 +1,21 @@
 <?php
 /**
- * MjFox Inc.
+ * Plumrocket Inc.
  * NOTICE OF LICENSE
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
  *
- * @package     MjFox shop
- * @copyright   Copyright (c) 2019 MjFox Inc. (http://www.mjfox.com)
- * @license     http://wiki.mjfox.com/wiki/EULA  End-user License Agreement
+ * @package     Plumrocket shop
+ * @copyright   Copyright (c) 2019 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
  */
 
-namespace App\Core\Controller\Home;
+namespace App\Catalog\Controller\Search;
 
-class View
+class Result
 {
 
     /**
@@ -55,10 +60,14 @@ class View
     public function execute()
     {
         $name = $this->request->getParam('sort');
-        $this->page->setTitle('Home');
         $direction = $this->request->getParam('order');
+        $searchString = $this->request->getParam('q');
+        $this->page->setTitle('Search result for: \''.$searchString.'\'');
         if($name){
             $this->productList->setOrder($name, $direction);
+        }
+        if($searchString){
+            $this->productList->setSearch($searchString);
         }
         $this->page->setMainContentBlock($this->productList);
         $this->page->render();
