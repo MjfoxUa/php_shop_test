@@ -12,7 +12,6 @@ namespace App\Catalog\Block;
 
 class ProductList extends Block
 {
-    private $product;
     /**
      * @var \App\Catalog\Model\CategoryFactory
      */
@@ -45,10 +44,26 @@ class ProductList extends Block
         return $this;
     }
 
+    public function getPageCount()
+    {
+        return $this->productCollection->getPageCount();
+    }
+
+    public function getPage()
+    {
+        return $this->productCollection->page;
+    }
+
     public function setOrder($name, $direction)
     {
-
         $this->productCollection->setOrder($name, $direction);
+        return $this;
+    }
+
+    public function setPage($page)
+    {
+        $this->productCollection->page = $page;
+        $this->productCollection->setCurrentPage($page);
         return $this;
     }
 
@@ -62,7 +77,6 @@ class ProductList extends Block
     {
         $params = $_GET;
         $params[$paramKey] = $paramValue;
-
         $result = [];
         foreach ($params as $key => $value){
             $result[] = $key . '=' . $value;
@@ -78,5 +92,10 @@ class ProductList extends Block
     public function getSortUrl($paramValue)
     {
         return $this->updateQueryString('sort', $paramValue);
+    }
+
+    public function getToPageUrl($paramValue)
+    {
+        return $this->updateQueryString('page', $paramValue);
     }
 }

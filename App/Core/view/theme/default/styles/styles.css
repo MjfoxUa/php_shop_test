@@ -360,6 +360,28 @@
   background: white;
 }
 
-.sort-products .sort_selected {
-  color: #da364d;
+.sort-products .selected {
+  color: #ffb600;
+}
+
+.pages_view {
+    font-family: Helvetica, sans-serif;
+    font-size: 24px;
+    background: #f1f1f1;
+    display: flex;
+    justify-content: center;
+}
+
+.pages_view > a{
+  color: #004a84;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.pages_view > a:hover {
+  color: #ffb600;
+}
+
+.pages_view .selected {
+  color: #ffb600;
 }

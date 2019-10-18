@@ -65,6 +65,8 @@ class View
         $name = $this->request->getParam('sort');
         $direction = $this->request->getParam('order');
         $categoryUrl = $this->request->getParam('url');
+        $page = $this->request->getParam('page');
+        $this->productList->setPage($page);
         $this->page->setTitle(ucfirst($categoryUrl));
         $this->productList->setCategory($categoryUrl);
         if($name){

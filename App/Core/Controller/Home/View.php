@@ -54,9 +54,11 @@ class View
 
     public function execute()
     {
-        $name = $this->request->getParam('sort');
         $this->page->setTitle('Home');
+        $name = $this->request->getParam('sort');
+        $page = $this->request->getParam('page');
         $direction = $this->request->getParam('order');
+        $this->productList->setPage($page);
         if($name){
             $this->productList->setOrder($name, $direction);
         }

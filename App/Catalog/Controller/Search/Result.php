@@ -69,6 +69,8 @@ class Result
         if($searchString){
             $this->productList->setSearch($searchString);
         }
+        $page = $this->request->getParam('page');
+        $this->productList->setPage($page);
         $this->page->setMainContentBlock($this->productList);
         $this->page->render();
     }

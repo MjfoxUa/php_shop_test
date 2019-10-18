@@ -3,12 +3,38 @@
 
 <div class="sort-products">
   <b>Sort by :</b>
-  <a href="<?php echo $block->getSortUrl('price') ?>" >price</a><div class="sort-products__vl"></div>
-  <a href="<?php echo $block->getSortUrl('name') ?>">name</a><div class="sort-products__vl"></div>
-  <a href="<?php echo $block->getSortUrl('create_at') ?>">new products</a>
+  <a href="<?php echo $block->getSortUrl('price') ?>" class="
+  <?php if(array_key_exists('sort',$_GET)){
+      if($_GET['sort'] == 'price'){
+          echo 'selected';
+      }
+  } ?>">price</a><div class="sort-products__vl"></div>
+  <a href="<?php echo $block->getSortUrl('name') ?>" class="
+  <?php if(array_key_exists('sort',$_GET)){
+      if($_GET['sort'] == 'name'){
+          echo 'selected';
+      }
+  } ?>">name</a><div class="sort-products__vl"></div>
+
+  <a href="<?php echo $block->getSortUrl('create_at') ?>" class="
+  <?php if(array_key_exists('sort',$_GET)){
+      if($_GET['sort'] == 'create_at'){
+          echo 'selected';
+      }
+  } ?>">new products</a>
   <b>From :</b>
-  <a href="<?php echo $block->getOrderUrl('asc') ?>" class="less">less</a><div class="sort-products__vl"></div>
-  <a href="<?php echo $block->getOrderUrl('desc') ?>" class="bigger">bigger</a>
+  <a href="<?php echo $block->getOrderUrl('asc') ?>" class="less"
+      <?php if(array_key_exists('order',$_GET)){
+          if($_GET['order'] == 'asc'){
+              echo 'style = "color: #ffb600;"';
+          }
+      } ?>>less</a><div class="sort-products__vl"></div>
+  <a href="<?php echo $block->getOrderUrl('desc') ?>" class="bigger"
+      <?php if(array_key_exists('order',$_GET)){
+          if($_GET['order'] == 'desc'){
+              echo 'style = "color: #ffb600;"';
+          }
+      } ?>>bigger</a>
 </div>
 <div class="product-list">
     <?php foreach ($block->getProduct() as $products): ?>
@@ -24,4 +50,20 @@
         </div>
       </a>
     <?php endforeach; ?>
+</div>
+<div class="pages_view">
+    <?php
+     echo '<a href="'.$block->getToPageUrl(1).'" ><<</a>';
+    for ($page=1; $page <= $block->getPageCount(); $page++){
+        echo '<a href="'.$block->getToPageUrl($page).'"';
+        if(array_key_exists('page',$_GET)){
+            if($_GET['page'] == $page){
+                echo 'class="selected";';
+            }
+        }
+        echo '>'.$page.'</a> ';
+
+    }
+    echo '<a href="'.$block->getToPageUrl($page - 1).'" >>></a>';
+    ?>
 </div>
