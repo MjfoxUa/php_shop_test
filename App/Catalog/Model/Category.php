@@ -107,6 +107,7 @@ class Category
     {
         return '/shop/catalog/category/view/url/'.$this->getUrl();
     }
+
     /**
      * @return mixed
      */

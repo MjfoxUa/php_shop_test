@@ -10,7 +10,7 @@
 
 namespace App\Core\Controller\Home;
 
-class View
+class View implements \App\Catalog\Controller\ActionInterface
 {
 
     /**

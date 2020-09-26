@@ -10,7 +10,7 @@
 
 namespace App\Catalog\Controller\Product;
 
-class Edit
+class Edit implements \App\Catalog\Controller\ActionInterface
 {
 
     /**

@@ -15,7 +15,7 @@
 
 namespace App\Catalog\Controller\Product;
 
-class Delete
+class Delete implements \App\Catalog\Controller\ActionInterface
 {
 
     /**

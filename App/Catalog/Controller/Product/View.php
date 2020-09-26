@@ -10,7 +10,7 @@
 
 namespace App\Catalog\Controller\Product;
 
-class View
+class View implements \App\Catalog\Controller\ActionInterface
 {
 
     /**

@@ -15,7 +15,7 @@
 
 namespace App\Catalog\Controller\Product;
 
-class Add
+class Add implements \App\Catalog\Controller\ActionInterface
 {
     /**
      * @var \App\Core\Block\Page

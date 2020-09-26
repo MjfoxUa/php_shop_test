@@ -15,7 +15,7 @@
 
 namespace App\Catalog\Controller\Category;
 
-class Add
+class Add implements \App\Catalog\Controller\ActionInterface
 {
 
     /**

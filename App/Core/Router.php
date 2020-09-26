@@ -39,6 +39,7 @@ class Router
             $resultAction = "\App\\" . $module . "\\Controller\\" . $controller . "\\" . $action;
             $action = $this->objectManager->get($resultAction);
         }
+
         return $action;
     }
 }

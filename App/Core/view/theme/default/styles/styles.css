@@ -51,15 +51,15 @@
   font-style: italic;
 }
 .product-info__add-to-cart-button > button {
-  display: flex;
-  flex-direction: column;
+  padding: 10px 30px;
+  text-align: center;
   border: 1px solid #ffb600;
   background: #ffb600;
-  width: 110%;
   height: 100%;
-  border-radius: 30px;
-  font-size: 30px;
-  color: #004a84;
+  border-radius: 5px;
+  font-size: 25px;
+  color: #000000;
+  text-transform: uppercase;
 }
 
 .product-info__add-to-cart-button > button:hover {

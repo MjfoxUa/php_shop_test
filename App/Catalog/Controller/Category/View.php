@@ -10,7 +10,7 @@
 
 namespace App\Catalog\Controller\Category;
 
-class View
+class View implements \App\Catalog\Controller\ActionInterface
 {
     /**
      * @var \App\Core\Block\Page

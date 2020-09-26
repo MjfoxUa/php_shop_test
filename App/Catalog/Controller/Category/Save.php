@@ -15,7 +15,7 @@
 
 namespace App\Catalog\Controller\Category;
 
-class Save
+class Save implements \App\Catalog\Controller\ActionInterface
 {
     /**
      * @var \App\Catalog\Model\CategoryFactory
