@@ -22,4 +22,4 @@ CREATE TABLE IF NOT EXISTS `accounts` (
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-INSERT INTO `accounts` (`id`, `username`, `password`, `email`) VALUES (1, 'root', 'root123', 'root@root.com');
+INSERT INTO `accounts` (`id`, `username`, `password`, `email`) VALUES (1, 'root', '$2y$10$kfoKQpYw2ncRvwqmPxH/F.5hNSm/I254j/KRYetwiU1lcjZQqe7ai', 'root@root.com');
