@@ -3,9 +3,9 @@
  * MjFox Inc.
  * NOTICE OF LICENSE
  *
- * @package     MjFox shop
- * @copyright   Copyright (c) 2019 MjFox Inc. (http://www.mjfox.com)
- * @license     http://wiki.mjfox.com/wiki/EULA  End-user License Agreement
+ * @package     MjFox_SHOP
+ * @copyright   Copyright (c) 2021 MjFox Inc.
+ * @license     End-user License Agreement
  */
 
 namespace App\Core;
@@ -47,8 +47,8 @@ class ObjectManager
             if ($constructor) {
                 foreach ($constructor->getParameters() as $parameter) {
                     $params[$parameter->getName()] = [
-                        'class' => $parameter->getClass() ? $parameter->getClass()->getName() : false,
-                        'value' => $parameter->isOptional() ? $parameter->getDefaultValue() : false,
+                        'class' => $parameter->getType(),
+                        'value' => $parameter->isOptional()
                     ];
                 }
 

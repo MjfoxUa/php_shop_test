@@ -12,45 +12,65 @@ namespace App\Core;
 
 class Request
 {
-    public $path;
+    /**
+     * @var false|string
+     */
+    public false|string $path;
+
+
     public $currentUrl;
 
+    /**
+     * @param $path
+     */
     public function __construct($path)
     {
         $this->currentUrl = $path;
 
-        if(strpos($path, '?' ) === false){
+        if(strpos($path, '?' ) === false)
+        {
             $this->path = $path;
         }else{
             $this->path = strstr($path, '?', true);
         }
     }
 
-
-    public function getModuleName()
+    /**
+     * @return string
+     */
+    public function getModuleName(): string
     {
         $pathsParts = $this->getParts();
         if (isset($pathsParts[1])) {
             return ucfirst($pathsParts[1]);
         }
+
         return 'Core';
     }
 
-    public function getControllerName()
+    /**
+     * @return string
+     */
+    public function getControllerName(): string
     {
         $pathsParts = $this->getParts();
         if (isset($pathsParts[2])) {
             return ucfirst($pathsParts[2]);
         }
+
         return 'Home';
     }
 
-    public function getActionName()
+    /**
+     * @return string
+     */
+    public function getActionName(): string
     {
         $pathsParts = $this->getParts();
         if (isset($pathsParts[3])) {
             return ucfirst($pathsParts[3]);
         }
+
         return 'View';
     }
 
@@ -59,13 +79,17 @@ class Request
         return explode('/', trim($this->path, '/'));
     }
 
-    public function getParams()
+    /**
+     * @return array
+     */
+    public function getParams(): array
     {
         $params = [];
         $pathsParts = $this->getParts();
         for ($i = 4; isset($pathsParts[$i]); $i += 2) {
             $params[$pathsParts[$i]] = $pathsParts[$i + 1] ?? 0;
         }
+
         return array_merge($params, $_GET);
     }
 

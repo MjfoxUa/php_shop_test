@@ -21,8 +21,7 @@ class ProductList extends Block
      */
     private $productCollection;
 
-    protected $templatePath = '\App\Core\view\templates\product_list.phtml';
-
+    protected $templatePath = '/App/Core/view/templates/product_list.phtml';
 
     public function __construct(\App\Catalog\Model\CategoryFactory $categoryFactory, \App\Catalog\Model\ProductCollection $productCollection)
     {

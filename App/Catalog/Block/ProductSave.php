@@ -18,7 +18,7 @@ namespace App\Catalog\Block;
 class ProductSave extends Block
 {
     private $productSave;
-    protected $templatePath = '\App\Catalog\view\Templates\Product\product_save.phtml';
+    protected $templatePath = '/App/Catalog/view/Templates/Product/product_save.phtml';
 
     /**
      * @return \App\Catalog\Model\ProductSave

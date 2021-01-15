@@ -13,7 +13,7 @@ namespace App\Catalog\Block;
 class ProductView extends Block
 {
     private $product;
-    protected $templatePath = '\App\Catalog\view\Templates\Product\product_view.phtml';
+    protected $templatePath = '/App/Catalog/view/Templates/Product/product_view.phtml';
     /**
      * @return \App\Catalog\Model\Product
      */

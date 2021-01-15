@@ -3,32 +3,40 @@
  * MjFox Inc.
  * NOTICE OF LICENSE
  *
- * @package     MjFox shop
- * @copyright   Copyright (c) 2019 MjFox Inc. (http://www.mjfox.com)
- * @license     http://wiki.mjfox.com/wiki/EULA  End-user License Agreement
+ * @package     MjFox_SHOP
+ * @copyright   Copyright (c) 2020 MjFox Inc.
+ * @license     End-user License Agreement
  */
 
 namespace App\Core;
-
 
 use App\Catalog\Model\Category;
 
 class Router
 {
-    private $objectManager;
+    /**
+     * @var ObjectManager
+     */
+    private ObjectManager $objectManager;
+
+    /**
+     * @param ObjectManager $objectManager
+     */
     public function __construct(ObjectManager $objectManager)
     {
         $this->objectManager = $objectManager;
     }
 
-    public function match()
+    /**
+     * @return string|bool|Object
+     */
+    public function match() : string|bool|object
     {
         $request = $this->objectManager->get(\App\Core\Request::class, ['path' => $_SERVER['REQUEST_URI']]);
         $module = $request->getModuleName();
         $controller = $request->getControllerName();
         $action = $request->getActionName();
         $resultAction = "\App\\" . $module . "\\Controller\\" . $controller . "\\" . $action;
-
 
         if (class_exists($resultAction)) {
             $action = $this->objectManager->get($resultAction);

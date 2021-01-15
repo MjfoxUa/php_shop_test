@@ -23,7 +23,7 @@ class CategoryEdit extends Block
      */
     private $categoryCollection;
 
-    protected $templatePath = '\App\Catalog\view\Templates\Category\category_edit.phtml';
+    protected $templatePath = '/App/Catalog/view/Templates/Category/category_edit.phtml';
     /**
      * @var \App\Catalog\Model\Category
      */

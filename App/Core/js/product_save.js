@@ -15,7 +15,11 @@ $(function() {
                         $('#result_form').addClass('product-form_errors');
                         data.errors.forEach(function(element) {
                             $('#result_form').html(data.errors);
-                            setTimeout(function (){window.location = "http://localhost/shop/catalog/product/view/id/"+data.id}, 2500);
+                            if (data.id === undefined) {
+                                setTimeout(function (){window.location = "http://localhost/shop/catalog/product/add"}, 2500);
+                            } else {
+                                setTimeout(function (){window.location = "http://localhost/shop/catalog/product/view/id/"+data.id}, 2500);
+                            }
                         });
                     }else {
                         $('#result_form').removeClass();
