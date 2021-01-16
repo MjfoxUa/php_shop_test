@@ -15,23 +15,33 @@
 
 namespace App\Catalog\Block;
 
+use App\Catalog\Model\Category;
+use App\Catalog\Model\CategoryCollection;
+
 class CategoryEdit extends Block
 {
 
     /**
-     * @var \App\Catalog\Model\CategoryCollection
+     * @var CategoryCollection
      */
     private $categoryCollection;
 
     protected $templatePath = '/App/Catalog/view/Templates/Category/category_edit.phtml';
     /**
-     * @var \App\Catalog\Model\Category
+     * @var Category
      */
     private $category;
 
-    public function __construct(\App\Catalog\Model\CategoryCollection $categoryCollection,
-                                \App\Catalog\Model\Category $category)
-    {
+    /**
+     * CategoryEdit constructor.
+     *
+     * @param \App\Catalog\Model\CategoryCollection $categoryCollection
+     * @param \App\Catalog\Model\Category           $category
+     */
+    public function __construct(
+        CategoryCollection $categoryCollection,
+        Category $category
+    ) {
         $this->categoryCollection = $categoryCollection;
         $this->category = $category;
     }

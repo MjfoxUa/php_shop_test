@@ -41,11 +41,11 @@ class Login implements ActionInterface
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['name'] = $user;
 
-            echo json_encode(['status' => true, 'message' => 'Welcome ' . $user . '!'], JSON_THROW_ON_ERROR);
+            echo json_encode(['status' => true, 'message' => 'Welcome ' . $user . '!']);
             return ;
         }
 
-        echo json_encode(['status' => false, 'message' => 'Invalid username or password.'], JSON_THROW_ON_ERROR);
+        echo json_encode(['status' => false, 'message' => 'Invalid username or password.']);
     }
 
     /**

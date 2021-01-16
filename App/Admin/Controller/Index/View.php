@@ -29,7 +29,7 @@ class View implements ActionInterface
     public function execute()
     {
         $this->page->setTitle('Admin Login');
-        $this->page->setTemplate('/App/Core/view/templates/admin.phtml');
+        $this->page->setTemplate('/App/Admin/view/templates/admin.phtml');
         $this->page->render();
     }
 }
