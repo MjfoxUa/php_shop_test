@@ -11,9 +11,11 @@ $(function() {
                 data: new FormData(this),
                 dataType: 'json',
                 success: function(data){
-                    $('#result_form').removeClass().addClass('delete-result');
-                    $('.delete-result').html(data.message);
-                    setTimeout(function (){window.location = "/shop/catalog/category/add/"}, 2500);
+                    $('#result_form').removeClass().addClass('invalid');
+                    $('#result_form').html(data.message);
+                    setTimeout(function (){
+                        $('#result_form').empty().removeClass();
+                        }, 1500);
                 }
             });
         }

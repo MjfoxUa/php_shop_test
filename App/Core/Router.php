@@ -4,7 +4,7 @@
  * NOTICE OF LICENSE
  *
  * @package     MjFox_SHOP
- * @copyright   Copyright (c) 2020 MjFox Inc.
+ * @copyright   Copyright (c) 2021 MjFox Inc.
  * @license     End-user License Agreement
  */
 

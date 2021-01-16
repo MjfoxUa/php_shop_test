@@ -12,17 +12,19 @@ html, body
 {
   width: 100%;
   height: 100%;
-
   margin: 0;
   padding: 0;
+  background-color: #435165;
 }
+
 h1 {
   text-align: center;
-  color: #dee0e4;
+  color: black;
   font-size: 24px;
   border-bottom: 1px solid #dee0e4;
   border-top: 1px solid #dee0e4;
 }
+
 .admin-wrapper {
   height: 100%;
   display: flex;
@@ -31,32 +33,39 @@ h1 {
 
 .sidebar-wrapper {
   width: 15%;
-  background-color: #3274d6;
+  background-color: #f1f1f1;
   box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
 }
 
 .sidebar-wrapper > nav > ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
+
 .sidebar-wrapper > nav > ul > li{
   padding: 5px 0 0px 0;
 }
 
 .fa {
-  color: #f1f1f1;
+  color: #435165;
   margin: 7px;
   width: 19px;
 }
 
-.sidebar-wrapper > nav > ul > li > a {
+.fa.fa-undo {
   color: #f1f1f1;
+}
+
+.sidebar-wrapper > nav > ul > li > a {
+  color: black;
   text-decoration: none;
   font-weight: bold;
   font-size: 24px;
 }
 
 .sidebar-wrapper > nav > ul > li > a:hover {
-  color: #004a84;
+  color: #435165;
 }
 
 .main-content {
@@ -70,12 +79,18 @@ h1 {
   width: 80%;
 }
 
+.navbar > ul > a:hover,
+.fa.fa-undo:hover {
+  color: #00a253;
+}
+
 .main-content-wrapper {
   display: flex;
   width: 80%;
 }
+
 .main-content > div > ul > a {
-  color: #3274d6;
+  color: #f1f1f1;
   text-decoration: none;
   font-weight: bold;
   font-size: 24px;

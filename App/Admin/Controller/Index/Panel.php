@@ -11,8 +11,10 @@
 namespace App\Admin\Controller\Index;
 
 use App\Catalog\Block\CategoryEdit;
+use App\Catalog\Block\ProductEdit;
 use App\Catalog\Controller\ActionInterface;
 use App\Core\Block\Page;
+use App\Core\Request;
 
 const LOGEDIN = 'panel.phtml';
 const INVALID = 'admin.phtml';
@@ -28,17 +30,25 @@ class Panel implements ActionInterface
      * @var CategoryEdit
      */
     private CategoryEdit $categoryEdit;
+    private Request $request;
+    private ProductEdit $productEdit;
 
     /**
      * @param \App\Core\Block\Page $page
      * @param \App\Catalog\Block\CategoryEdit $categoryEdit
+     * @param \App\Core\Request $request
+     * @param \App\Catalog\Block\ProductEdit $productEdit
      */
     public function __construct(
         Page $page,
-        CategoryEdit $categoryEdit
+        CategoryEdit $categoryEdit,
+        Request $request,
+        ProductEdit $productEdit
     ) {
         $this->page = $page;
         $this->categoryEdit = $categoryEdit;
+        $this->request = $request;
+        $this->productEdit = $productEdit;
     }
 
     public function execute()
@@ -49,8 +59,16 @@ class Panel implements ActionInterface
         if (!isset($_SESSION['loggedin'])) {
             $page .= INVALID;
         } else {
-            $this->page->setMainContentBlock($this->categoryEdit);
             $page .= LOGEDIN;
+            $menuRequest = $this->request->getSingleActionParat();
+            switch ($menuRequest) {
+                case 'category':
+                    $this->page->setMainContentBlock($this->categoryEdit);
+                    break;
+                case 'product':
+                    $this->page->setMainContentBlock($this->productEdit);
+                    break;
+            }
         }
 
         $this->page->setTemplate($page);

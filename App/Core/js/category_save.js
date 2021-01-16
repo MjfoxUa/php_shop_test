@@ -12,16 +12,20 @@ $(function() {
                 if(!!data){
                     if(!data.status){
                         $('#result_form').removeClass();
-                        $('#result_form').addClass('product-form_errors');
+                        $('#result_form').addClass('invalid');
                         data.errors.forEach(function(element) {
                         $('#result_form').html(data.errors);
-                        setTimeout(function (){window.location = "/shop/catalog/category/add/"}, 2500);
+                        setTimeout(function (){
+                            $('#result_form').empty().removeClass().reload();
+                        }, 1500);
                         });
                     }else {
                         $('#result_form').removeClass();
-                        $('#result_form').addClass('product-form_message-save');
+                        $('#result_form').addClass('success');
                         $('#result_form').html(data.message);
-                        setTimeout(function (){window.location = "/shop/catalog/category/add/"}, 2500);
+                        setTimeout(function () {
+                            $('#result_form').empty().removeClass();
+                        }, 1500);
                     }
                 }
             }
