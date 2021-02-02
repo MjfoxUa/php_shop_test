@@ -54,18 +54,24 @@ class Panel implements ActionInterface
     public function execute()
     {
         $this->page->setTitle('Admin Panel');
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         $page = '/App/Admin/view/templates/';
         if (!isset($_SESSION['loggedin'])) {
             $page .= INVALID;
         } else {
             $page .= LOGEDIN;
             $menuRequest = $this->request->getSingleActionParat();
+            $this->page->setMainContentBlock($this->categoryEdit);
+
             switch ($menuRequest) {
+                case 'index':
                 case 'category':
+                case '':
                     $this->page->setMainContentBlock($this->categoryEdit);
                     break;
-                case 'product':
+                default:
                     $this->page->setMainContentBlock($this->productEdit);
                     break;
             }

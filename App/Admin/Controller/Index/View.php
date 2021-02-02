@@ -13,21 +13,38 @@ declare(strict_types=1);
 namespace App\Admin\Controller\Index;
 
 use App\Catalog\Controller\ActionInterface;
+use App\Core\Block\Page;
 
 class View implements ActionInterface
 {
     /**
-     * @var \App\Core\Block\Page
+     * @var Page
      */
-    private \App\Core\Block\Page $page;
+    private Page $page;
+    /**
+     * @var Panel
+     */
+    private Panel $adminPanel;
 
-    public function __construct(\App\Core\Block\Page $page)
-    {
+    /**
+     * @param \App\Core\Block\Page $page
+     * @param \App\Admin\Controller\Index\Panel $adminPanel
+     */
+    public function __construct(
+        Page $page,
+        Panel $adminPanel
+    ) {
         $this->page = $page;
+        $this->adminPanel = $adminPanel;
     }
 
     public function execute()
     {
+        session_start();
+        if (isset($_SESSION['loggedin'])) {
+            $this->adminPanel->execute();
+        }
+
         $this->page->setTitle('Admin Login');
         $this->page->setTemplate('/App/Admin/view/templates/admin.phtml');
         $this->page->render();

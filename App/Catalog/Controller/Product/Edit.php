@@ -3,46 +3,63 @@
  * MjFox Inc.
  * NOTICE OF LICENSE
  *
- * @package     MjFox shop
- * @copyright   Copyright (c) 2019 MjFox Inc. (http://www.mjfox.com)
- * @license     http://wiki.mjfox.com/wiki/EULA  End-user License Agreement
+ * @package     MjFox_SHOP
+ * @copyright   Copyright (c) 2021 MjFox Inc.
+ * @license     End-user License Agreement
  */
+
+declare(strict_types=1);
 
 namespace App\Catalog\Controller\Product;
 
-class Edit implements \App\Catalog\Controller\ActionInterface
-{
+use App\Catalog\Block\ProductEdit;
+use App\Catalog\Controller\ActionInterface;
+use App\Catalog\Model\ProductFactory;
+use App\Core\Block\Page;
+use App\Core\Request;
 
+class Edit implements ActionInterface
+{
     /**
-     * @var \App\Core\Block\Page
+     * @var Page
      */
     private $page;
+
     /**
-     * @var \App\Catalog\Block\ProductEdit
+     * @var ProductEdit
      */
     private $productEdit;
+
     /**
-     * @var \App\Core\Request
+     * @var Request
      */
     private $request;
+
     /**
-     * @var \App\Catalog\Model\ProductFactory
+     * @var ProductFactory
      */
     private $productFactory;
 
+    /**
+     * @param \App\Core\Block\Page              $page
+     * @param \App\Catalog\Block\ProductEdit    $productEdit
+     * @param \App\Core\Request                 $request
+     * @param \App\Catalog\Model\ProductFactory $productFactory
+     */
     public function __construct(
-        \App\Core\Block\Page $page,
-        \App\Catalog\Block\ProductEdit $productEdit,
-        \App\Core\Request $request,
-        \App\Catalog\Model\ProductFactory $productFactory
+        Page $page,
+        ProductEdit $productEdit,
+        Request $request,
+        ProductFactory $productFactory
     ) {
-
         $this->page = $page;
         $this->productEdit = $productEdit;
         $this->request = $request;
         $this->productFactory = $productFactory;
     }
-    public function execute(){
+
+    public function execute()
+    {
         $this->page->setTitle('Edit product');
         $id = $this->request->getParam('id');
         $product = $this->productFactory->create();

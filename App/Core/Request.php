@@ -107,7 +107,7 @@ class Request
     }
 
     public function getSingleActionParat(){
-        return $this->getParts()[4];
+        return $this->getParts()[4] ?? false;
     }
 
     public function getCurrentUrl()

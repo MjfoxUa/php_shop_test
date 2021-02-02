@@ -16,6 +16,9 @@ $(function() {
                     setTimeout(function (){
                         $('#result_form').empty().removeClass();
                         }, 1500);
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1510);
                 }
             });
         }
