@@ -12,13 +12,14 @@ declare(strict_types=1);
 
 namespace App\Core;
 
+use JetBrains\PhpStorm\Pure;
+
 class Request
 {
     /**
      * @var false|string
      */
     public false|string $path;
-
 
     public $currentUrl;
 
@@ -29,7 +30,7 @@ class Request
     {
         $this->currentUrl = $path;
 
-        if(strpos($path, '?' ) === false)
+        if(!str_contains($path, '?'))
         {
             $this->path = $path;
         }else{
@@ -98,7 +99,11 @@ class Request
         return array_merge($params, $_GET);
     }
 
-    public function getParam(string $string)
+    /**
+     * @param string $string
+     * @return mixed|null
+     */
+    public function getParam(string $string): mixed
     {
         if (isset($this->getParams()[$string])) {
             return $this->getParams()[$string];
@@ -106,7 +111,11 @@ class Request
         return null;
     }
 
-    public function getSingleActionParat(){
+    /**
+     * @return false|mixed|string
+     */
+    public function getSingleActionParat(): mixed
+    {
         return $this->getParts()[4] ?? false;
     }
 

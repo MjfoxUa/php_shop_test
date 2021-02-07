@@ -10,8 +10,6 @@
 
 namespace App\Core;
 
-use App\Catalog\Model\Category;
-
 class Router
 {
     /**

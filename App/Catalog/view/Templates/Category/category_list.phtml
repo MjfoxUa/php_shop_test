@@ -17,7 +17,9 @@
 
 <?php if ($block->getCategories() !== null) :?>
 <?php foreach ($block->getCategories() as $category): ?>
-    <li><a href="<?= $category->getCategoryUrl() ?>"><?= ucfirst ($category->getName()) ?></a></li>
+    <li class="menu__group">
+      <a class="menu__link r-link text-underlined" href="<?= $category->getCategoryUrl() ?>"><?= ucfirst ($category->getName()) ?></a>
+    </li>
 <?php endforeach; ?>
 <?php else: ?>
   <?= '' ?>
