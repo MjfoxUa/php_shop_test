@@ -10,6 +10,8 @@
 
 namespace App\Core\Block;
 
+use App\Core\Api\UrlBuilderInterface;
+
 class Page
 {
     private $title;
@@ -19,9 +21,15 @@ class Page
      */
     private $categoryListBlock;
 
-    public function __construct(\App\Catalog\Block\CategoryList $categoryListBlock)
+    /**
+     * @var \App\Core\Api\UrlBuilderInterface
+     */
+    private UrlBuilderInterface $urlBuilder;
+
+    public function __construct(\App\Catalog\Block\CategoryList $categoryListBlock, UrlBuilderInterface $urlBuilder)
     {
         $this->categoryListBlock = $categoryListBlock;
+        $this->urlBuilder = $urlBuilder;
     }
 
     public function getCategoryList()
@@ -47,9 +55,10 @@ class Page
     {
         return $this->mainContentBlock;
     }
+
     public function render()
     {
-        include BP.'\App\Core\view\templates\page.phtml';
+        $urlBuilder = $this->urlBuilder;
+        include fixDS(BP . '\App\Core\view\templates\page.phtml');
     }
-
 }

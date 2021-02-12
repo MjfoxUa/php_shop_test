@@ -14,6 +14,21 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include_once 'vendor/autoload.php';
-define('BP', dirname(__DIR__).'\shop');
+define('DS', DIRECTORY_SEPARATOR);
+define('BP', dirname(__DIR__) . DS . 'shop');
 
 $objectManager = \App\Core\ObjectManager::getInstance();
+
+/**
+ * Corrects Directory Separator according to platform
+ *
+ * @param string $path
+ * @return string
+ */
+function fixDS(string $path): string
+{
+    if (DS === '/') {
+        return str_replace('\\', '/', $path);
+    }
+    return str_replace('/', '\\', $path);
+}

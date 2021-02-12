@@ -25,7 +25,7 @@ abstract class Block
         if ($this ->templatePath) {
             $block = $this;
             ob_start();
-            include BP . $this ->templatePath;
+            include fixDS(BP . $this ->templatePath);
             $a = ob_get_contents();
             ob_clean();
             return $a;

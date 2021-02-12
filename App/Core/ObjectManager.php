@@ -17,6 +17,10 @@ class ObjectManager
      */
     private static $instance = [];
 
+    private array $preference = [
+        \App\Core\Api\UrlBuilderInterface::class => \App\Core\UrlBuilder::class,
+    ];
+
     /**
      * @return ObjectManager
      */
@@ -39,6 +43,10 @@ class ObjectManager
     public function create(string $type, array $arguments = [])
     {
         try {
+            if (isset($this->preference[$type])) {
+                $type = $this->preference[$type];
+            }
+
             $reflection = new \ReflectionClass($type);
 
             $constructor = $reflection->getConstructor();
