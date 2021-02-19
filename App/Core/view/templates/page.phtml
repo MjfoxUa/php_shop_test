@@ -4,13 +4,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/shop/App/Core/view/theme/default/styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="<?= $urlBuilder->getBaseUrl() ?>/App/Core/view/theme/default/styles/styles.css">
   <script type="text/javascript" src="/shop/App/Core/js/jquery.js"></script>
     <title><?php  echo $this->getTitle(); ?></title>
 </head>
     <body>
     <div class="header_logo">
-      <a href="<?= $urlBuilder->getBaseUrl() ?>"><img src="/shop/App/Core/view/theme/default/image/shop-icon.gif" alt="logo" width="100px"></a>
+      <a href="<?= $urlBuilder->getBaseUrl() ?>"><img src="<?= $urlBuilder->getBaseUrl() ?>/App/Core/view/theme/default/image/shop-icon.gif" alt="logo" width="100px"></a>
 
       <form action="http://localhost/shop/catalog/search/result" class="search-form">
         <input type="text" name="q">

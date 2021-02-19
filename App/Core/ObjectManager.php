@@ -55,7 +55,9 @@ class ObjectManager
             if ($constructor) {
                 foreach ($constructor->getParameters() as $parameter) {
                     $params[$parameter->getName()] = [
-                        'class' => $parameter->getClass() ? $parameter->getClass()->getName() : false,
+                        'class' => $parameter->getType() && !$parameter->getType()->isBuiltin()
+                            ? $parameter->getType()->getName()
+                            : null,
                         'value' => $parameter->isOptional() ? $parameter->getDefaultValue() : false,
                     ];
                 }

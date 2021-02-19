@@ -15,7 +15,7 @@ error_reporting(E_ALL);
 
 include_once 'vendor/autoload.php';
 define('DS', DIRECTORY_SEPARATOR);
-define('BP', dirname(__DIR__) . DS . 'shop');
+define('BP', __DIR__);
 
 $objectManager = \App\Core\ObjectManager::getInstance();
 
