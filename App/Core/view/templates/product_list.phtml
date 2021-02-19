@@ -36,6 +36,7 @@
           }
       } ?>>bigger</a>
 </div>
+
 <div class="product-list">
     <?php foreach ($block->getProduct() as $products): ?>
       <a href="/shop/catalog/product/view/id/<?php echo $products->getId() ?>">
@@ -45,7 +46,6 @@
                 Name: <b><?php echo $products->getName()  ?></b><br>
                 Price :<i> <?php echo $products->getPrice()?></i> $<br>
                 Category :<i> <?php echo $products->getCategoryName() ?></i>
-                  <button>Add to cart</button>
             </li>
         </div>
       </a>

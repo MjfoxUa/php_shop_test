@@ -4,10 +4,12 @@
  * NOTICE OF LICENSE
  *
  * @package     MjFox shop
- * @copyright   Copyright (c) 2019 MjFox Inc. (http://www.mjfox.com)
+ * @copyright   Copyright (c) 2021 MjFox Inc. (http://www.mjfox.com)
  * @license     http://wiki.mjfox.com/wiki/EULA  End-user License Agreement
  */
 
+
+use App\Core\ObjectManager;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -17,18 +19,4 @@ include_once 'vendor/autoload.php';
 define('DS', DIRECTORY_SEPARATOR);
 define('BP', __DIR__);
 
-$objectManager = \App\Core\ObjectManager::getInstance();
-
-/**
- * Corrects Directory Separator according to platform
- *
- * @param string $path
- * @return string
- */
-function fixDS(string $path): string
-{
-    if (DS === '/') {
-        return str_replace('\\', '/', $path);
-    }
-    return str_replace('/', '\\', $path);
-}
+$objectManager = ObjectManager::getInstance();

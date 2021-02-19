@@ -1,45 +1,58 @@
 <?php
 /**
- * Plumrocket Inc.
+ * MjFox Inc.
  * NOTICE OF LICENSE
- * This source file is subject to the End-user License Agreement
- * that is available through the world-wide-web at this URL:
- * http://wiki.plumrocket.net/wiki/EULA
- * If you are unable to obtain it through the world-wide-web, please
- * send an email to support@plumrocket.com so we can send you a copy immediately.
  *
- * @package     Plumrocket shop
- * @copyright   Copyright (c) 2019 Plumrocket Inc. (http://www.plumrocket.com)
- * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ * @package     MjFox SHOP
+ * @copyright   Copyright (c) 2021 MjFox Inc.
+ * @license     End-user License Agreement
  */
+
+declare(strict_types=1);
 
 namespace App\Catalog\Controller\Category;
 
-class Add implements \App\Catalog\Controller\ActionInterface
+use App\Catalog\Block\CategoryEdit;
+use App\Catalog\Controller\ActionInterface;
+use App\Catalog\Model\CategoryFactory;
+use App\Core\Block\Page;
+
+class Add implements ActionInterface
 {
 
     /**
-     * @var \App\Core\Block\Page
+     * @var Page
      */
     private $page;
+
     /**
-     * @var \App\Catalog\Model\CategoryFactory
+     * @var CategoryFactory
      */
     private $categoryFactory;
+
     /**
-     * @var \App\Catalog\Block\CategoryEdit
+     * @var CategoryEdit
      */
     private $categoryEdit;
 
-    public function __construct(\App\Core\Block\Page $page,
-                                \App\Catalog\Model\CategoryFactory $categoryFactory,
-                                \App\Catalog\Block\CategoryEdit $categoryEdit)
+    /**
+     * Add constructor.
+     *
+     * @param \App\Core\Block\Page               $page
+     * @param \App\Catalog\Model\CategoryFactory $categoryFactory
+     * @param \App\Catalog\Block\CategoryEdit    $categoryEdit
+     */
+    public function __construct(
+        Page $page,
+        CategoryFactory $categoryFactory,
+        CategoryEdit $categoryEdit)
     {
 
         $this->page = $page;
         $this->categoryFactory = $categoryFactory;
         $this->categoryEdit = $categoryEdit;
     }
+
     public function execute()
     {
         $this->page->setTitle('Category add');

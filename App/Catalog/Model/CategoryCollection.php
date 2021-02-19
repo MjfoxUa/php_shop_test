@@ -3,17 +3,32 @@
  * MjFox Inc.
  * NOTICE OF LICENSE
  *
- * @package     MjFox shop
- * @copyright   Copyright (c) 2019 MjFox Inc. (http://www.mjfox.com)
- * @license     http://wiki.mjfox.com/wiki/EULA  End-user License Agreement
+ * @package     MjFox SHOP
+ * @copyright   Copyright (c) 2021 MjFox Inc.
+ * @license     End-user License Agreement
  */
+
+declare(strict_types=1);
 
 namespace App\Catalog\Model;
 
+use App\Core\DbAdapter;
+
 class CategoryCollection
 {
+    /**
+     * @var CategoryFactory
+     */
     private $categoryFactory;
+
+    /**
+     * @var DbAdapter
+     */
     private $dbAdapter;
+
+    /**
+     * @var $items
+     */
     private $items;
 
     /**
@@ -21,8 +36,16 @@ class CategoryCollection
      */
     private $loaded = false;
 
-    public function __construct(\App\Core\DbAdapter $dbAdapter, CategoryFactory $categoryFactory )
-    {
+    /**
+     * CategoryCollection constructor.
+     *
+     * @param \App\Core\DbAdapter       $dbAdapter
+     * @param CategoryFactory $categoryFactory
+     */
+    public function __construct(
+        DbAdapter $dbAdapter,
+        CategoryFactory $categoryFactory
+    ) {
         $this->dbAdapter = $dbAdapter;
         $this->categoryFactory = $categoryFactory;
     }

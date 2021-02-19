@@ -1,35 +1,40 @@
 <?php
 /**
- * Plumrocket Inc.
+ * MjFox Inc.
  * NOTICE OF LICENSE
- * This source file is subject to the End-user License Agreement
- * that is available through the world-wide-web at this URL:
- * http://wiki.plumrocket.net/wiki/EULA
- * If you are unable to obtain it through the world-wide-web, please
- * send an email to support@plumrocket.com so we can send you a copy immediately.
  *
- * @package     Plumrocket shop
- * @copyright   Copyright (c) 2019 Plumrocket Inc. (http://www.plumrocket.com)
- * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ * @package     MjFox_SHOP
+ * @copyright   Copyright (c) 2021 MjFox Inc.
+ * @license     End-user License Agreement
  */
 
 namespace App\Catalog\Block;
+
+use App\Catalog\Model\CategoryCollection;
+use App\Catalog\Model\Product;
 
 class ProductEdit extends Block
 {
     public $product;
 
     /**
-     * @var \App\Catalog\Model\CategoryCollection
+     * @var CategoryCollection
      */
 
-    protected $templatePath = '\App\Catalog\view\Templates\Product\product_edit.phtml';
+    protected $templatePath = '/App/Catalog/view/Templates/Product/product_edit.phtml';
 
     private $categoryCollection;
 
-    public function __construct(\App\Catalog\Model\CategoryCollection $categoryCollection,
-                                \App\Catalog\Model\Product $product)
-    {
+    /**
+     * ProductEdit constructor.
+     *
+     * @param CategoryCollection $categoryCollection
+     * @param Product            $product
+     */
+    public function __construct(
+        CategoryCollection $categoryCollection,
+        Product $product
+    ){
         $this->categoryCollection = $categoryCollection;
         $this->product = $product;
     }
@@ -37,22 +42,24 @@ class ProductEdit extends Block
     /**
      * @return \App\Catalog\Model\Category[]
      */
-    public function getCategories()
+    public function getCategories(): array
     {
         return $this->categoryCollection->getItems();
     }
 
     /**
-     * @return \App\Catalog\Model\Product
+     * @return Product
      */
-    public function getProduct(){
+    public function getProduct(): Product
+    {
         return $this->product;
     }
 
     /**
      * @param $product
      */
-    public function setProduct($product){
+    public function setProduct($product): void
+    {
         $this->product = $product;
     }
 }

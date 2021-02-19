@@ -1,0 +1,39 @@
+<?php /** @var \App\Core\Block\Page $this */ ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="\shop\App\Admin\view\style\admin_panel.css">
+    <link rel="stylesheet" type="text/css" href="\shop\App\Admin\view\style\category_edit.css">
+    <link rel="stylesheet" type="text/css" href="\shop\App\Admin\view\style\product_edit.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="\shop\App\Core\js\jquery.js"></script>
+    <title><?= $this->getTitle() ?></title>
+</head>
+<body>
+    <div class="admin-wrapper">
+        <div class="sidebar-wrapper">
+            <nav class="sidebar">
+              <h1>EDIT</h1>
+                <ul>
+                    <li><a href="\shop\admin\index\panel\category">
+                        <i class="fa fa-arrow-circle-right"></i>Category</a>
+                    </li>
+                    <li><a href="\shop\admin\index\panel\product">
+                        <i class="fa fa-arrow-circle-right"></i>Product</a></li>
+                </ul>
+            </nav>
+          <h1>CONFIG</h1>
+        </div>
+        <div class="main-content">
+            <div class="navbar">
+                <ul>
+                    <a href="LOGOUT"><i class="fa fa-undo"></i>LOGOUT </a>
+                    <a href="LOGOUT"><i class="fa fa-undo"></i>RELOAD PAGE</a>
+                </ul>
+            </div><br>
+          <div class="main-content-wrapper">
+              <?php echo $this->getMainContentBlock()->toHtml(); ?>
+          </div>
+        </div>
+</html>

@@ -39,11 +39,11 @@ class Save implements \App\Catalog\Controller\ActionInterface
         }
 
         if(!empty($errors)){
-            echo json_encode(['errors' => $errors, 'status' => false] );
-            return;
+            echo json_encode(['errors' => $errors, 'status' => false], JSON_THROW_ON_ERROR);
+            return ;
         }
         $category = $this->categoryFactory->create();
         $category->save($_POST);
-        echo  json_encode(['status' => true, 'message' => 'Category saved'] );
+        echo json_encode(['status' => true, 'message' => 'Category saved'], JSON_THROW_ON_ERROR);
     }
 }

@@ -1,6 +1,26 @@
-<?php /** @var $block \App\Catalog\Block\CategoryList */?>
+<?php
+/**
+ * MjFox Inc.
+ * NOTICE OF LICENSE
+ *
+ * @package     MjFox_SHOP
+ * @copyright   Copyright (c) 2020 MjFox Inc.
+ * @license     End-user License Agreement
+ */
 
+/**
+ * Template for Category List
+ *
+ * @var $block \App\Catalog\Block\CategoryList
+ */
+?>
+
+<?php if ($block->getCategories() !== null) :?>
 <?php foreach ($block->getCategories() as $category): ?>
-    <li><a href="<?php echo $category->getCategoryUrl(); ?>"><?php echo ucfirst ($category->getName() ); ?></a></li>
+    <li class="menu__group">
+      <a class="menu__link r-link text-underlined" href="<?= $category->getCategoryUrl() ?>"><?= ucfirst ($category->getName()) ?></a>
+    </li>
 <?php endforeach; ?>
-
+<?php else: ?>
+  <?= '' ?>
+<?php endif; ?>

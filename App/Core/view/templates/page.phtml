@@ -4,32 +4,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="<?= $urlBuilder->getBaseUrl() ?>/App/Core/view/theme/default/styles/styles.css">
-  <script type="text/javascript" src="/shop/App/Core/js/jquery.js"></script>
-    <title><?php  echo $this->getTitle(); ?></title>
+    <link rel="stylesheet" type="text/css" href="<?= $urlBuilder->getBaseUrl() ?>\App\Core\view\theme\default\styles\styles.css">
+    <link rel="stylesheet" type="text/css" href="<?= $urlBuilder->getBaseUrl() ?>\App\Core\view\theme\default\styles\top_menu.css">
+    <link rel="stylesheet" type="text/css" href="<?= $urlBuilder->getBaseUrl() ?>\App\Core\view\theme\default\styles\search.css">
+    <link rel="stylesheet" type="text/css" href="<?= $urlBuilder->getBaseUrl() ?>\App\Core\view\theme\default\styles\product_list.css">
+    <title><?= $this->getTitle() ?></title>
 </head>
     <body>
-    <div class="header_logo">
-      <a href="<?= $urlBuilder->getBaseUrl() ?>"><img src="<?= $urlBuilder->getBaseUrl() ?>/App/Core/view/theme/default/image/shop-icon.gif" alt="logo" width="100px"></a>
-
-      <form action="http://localhost/shop/catalog/search/result" class="search-form">
-        <input type="text" name="q">
-        <input type="submit" value="Search" class="search-form__button">
-      </form>
-
-    </div>
-      <div class="header_main">
-          <ul class="header_main__menu">
-            <li><a href="<?= $urlBuilder->getBaseUrl() ?>"><b>HOME</b></a></li>
-            <p><b>Categories :</b></p>
-              <?= $this->getCategoryList()->toHtml();?>
-            <p><b>Edit :</b></p>
-            <li><a href="<?= $urlBuilder->getUrl('catalog/category/add') ?>"><b>CATEGORY</b></a></li>
-            <li><a href="<?= $urlBuilder->getUrl('catalog/product/add') ?>"><b>PRODUCT</b></a></li>
+      <div class="page__menu page__custom-settings menu">
+          <ul class="menu__list">
+            <li class="menu__group">
+              <a class="menu__link r-link text-underlined" href="<?= $urlBuilder->getBaseUrl() ?>">
+                <b>HOME</b>
+              </a></li>
+              <?= $this->getCategoryList()->toHtml() ?>
           </ul>
       </div>
+            <form action="<?= $urlBuilder->getUrl('catalog/search/result') ?>" role="search" class="search">
+              <input type="text" name="q" class="search-input" placeholder="Search entire here..." aria-label="Search">
+              <button type="submit" class="search-button"><span>Search</span></button>
+            </form>
       <div>
-          <?= $this->getMainContentBlock()->toHtml(); ?>
+          <?= $this->getMainContentBlock()->toHtml() ?>
       </div>
     </body>
+<script type="text/javascript" src="\shop\App\Core\js\jquery.js"></script>
 </html>

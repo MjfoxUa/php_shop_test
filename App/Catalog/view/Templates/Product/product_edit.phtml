@@ -2,12 +2,12 @@
 <?php /** @var $block \App\Catalog\Block\CategoryList */?>
 <?php /** @var $block \App\Catalog\Model\Product */?>
 
-<p id="result_form" ></p>
-  <form id="product_form" action="/shop/catalog/product/save"  method="POST" enctype=multipart/form-data>
+<div class="product-edit">
+  <p id="result_form"></p>
+  <form id="product_form" action="\shop\catalog\product\save"  method="POST" enctype=multipart/form-data>
   <div class="product-form">
     <h1>PRODUCT</h1>
     <?php if($block->product->getImage()): ?>
-    <div class="product-info__image-edit" align="center">
       <img src="<?php echo ('/shop/uploaded/'.$block->product->getImage()); ?>" alt="Product Image">
     </div>
     <?php endif; ?>
@@ -30,12 +30,12 @@
       <input type="text" name="price" placeholder="Add price" id="price" pattern="\d+(\.\d{1,2})$/?"
              class="product-form__input" value="<?php echo $block->product->getPrice() ?>" >
       <label for="description" style="vertical-align: top;">DESCRIPTION :</label>
-      <textarea cols="60" rows="5" name="description" placeholder="Add description" id="description"
+      <textarea name="description" placeholder="Add description" id="description"
                 class="product-form__input"><?php echo $block->product->getDescription() ?></textarea>
       <label for="image">IMAGE :</label>
       <input type="file" name="image" id="img" class="product-form__file">
       <input type="submit" value="SAVE PRODUCT" class="product-form__submit">
       <input type="hidden" name="id" value="<?= $block->product->getId() ?>" id="productId"/>
-  </div>
 </form>
-<script type="text/javascript" src="/shop/App/Core/js/product_save.js"></script>
+  <script type="text/javascript" src="\shop\App\Core\js\jquery.js"></script>
+  <script type="text/javascript" src="\shop\App\Admin\js\product_save.js"></script>

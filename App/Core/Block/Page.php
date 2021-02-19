@@ -3,21 +3,34 @@
  * MjFox Inc.
  * NOTICE OF LICENSE
  *
- * @package     MjFox shop
- * @copyright   Copyright (c) 2019 MjFox Inc. (http://www.mjfox.com)
- * @license     http://wiki.mjfox.com/wiki/EULA  End-user License Agreement
+ * @package     MjFox SHOP
+ * @copyright   Copyright (c) 2021 MjFox Inc.
+ * @license     End-user License Agreement
  */
+
+declare(strict_types=1);
 
 namespace App\Core\Block;
 
+use App\Catalog\Block\CategoryList;
 use App\Core\Api\UrlBuilderInterface;
 
 class Page
 {
     private $title;
-    private $mainContentBlock;
+
     /**
-     * @var \App\Catalog\Block\CategoryList
+     * @var string
+     */
+    public string $template = '';
+
+    /**
+     * @var
+     */
+    private $mainContentBlock;
+
+    /**
+     * @var CategoryList
      */
     private $categoryListBlock;
 
@@ -32,33 +45,74 @@ class Page
         $this->urlBuilder = $urlBuilder;
     }
 
-    public function getCategoryList()
+    /**
+     * @return CategoryList
+     */
+    public function getCategoryList(): CategoryList
     {
         return $this->categoryListBlock;
     }
 
-    public function setTitle($title)
+    /**
+     * @param $title
+     * @return string
+     */
+    public function setTitle($title): string
     {
-        $this->title = $title;
+        return $this->title = $title;
     }
 
-    public function getTitle()
+    /**
+     * @return string
+     */
+    public function getTitle(): string
     {
         return $this->title;
     }
 
+    /**
+     * @return string
+     */
+    public function setTemplate($template): string
+    {
+        return $this->template = $template;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getTemplate(): string
+    {
+        return $this->template;
+    }
+
+    /**
+     * @param object
+     */
     public function setMainContentBlock($contentBlock)
     {
-        $this->mainContentBlock = $contentBlock;
+        return $this->mainContentBlock = $contentBlock;
     }
+
+    /**
+     * @return mixed
+     */
     public function getMainContentBlock()
     {
         return $this->mainContentBlock;
     }
 
-    public function render()
+    /**
+     * @return int
+     */
+    public function render(): int
     {
-        $urlBuilder = $this->urlBuilder;
-        include fixDS(BP . '\App\Core\view\templates\page.phtml');
+        if (empty($this->getTemplate()))
+        {
+            return  include BP.'/App/Core/view/templates/page.phtml';
+        }
+
+        return  include BP . $this->getTemplate();
     }
 }

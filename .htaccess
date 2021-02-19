@@ -1,4 +1,6 @@
+## enable rewrites
 RewriteEngine On
+
 RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteCond %{SCRIPT_FILENAME} !-f
 

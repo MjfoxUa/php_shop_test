@@ -1,33 +1,50 @@
-<?php /** @var $block \App\Catalog\Block\CategoryEdit */?>
-<?php /** @var $block \App\Catalog\Block\CategoryList */?>
+<?php
+/**
+ * MjFox Inc.
+ * NOTICE OF LICENSE
+ *
+ * @package     MjFox_SHOP
+ * @copyright   Copyright (c) 2021 MjFox Inc.
+ * @license     End-user License Agreement
+ */
+?>
 
+<?php
+/**
+ * Template for Category Edit
+ *
+ * @var $block \App\Catalog\Block\CategoryList
+ * @var $block \App\Catalog\Block\CategoryEdit
+ */
+?>
 
-<p id="result_form"></p>
-<form id="category-form" action="/shop/catalog/category/save"  method="POST" enctype=multipart/form-data>
+<div class="category-edit">
+  <p id="result_form"></p>
+<form id="category-form" action="\shop\catalog\category\save"  method="POST" enctype=multipart/form-data>
     <div class="category-form">
-        <h1>NEW CATEGORY</h1>
-        <label for="name">New category :</label>
-        <input type="text" name="name" placeholder="Add new category" id="name" class="category__input" >
-      <label for="url">Path :</label>
-      <input type="text" name="url" placeholder="Add path" id="url" class="category__input" pattern="[a-z]+">
-        <input type="submit" value="SAVE CATEGORY" class="category-form__submit">
+        <h1>CATEGORY</h1>
+        <h3>NEW</h3>
+        <label for="name">Add new category name :</label>
+        <input type="text" name="name" placeholder="Category name" id="name" class="category__input" >
+      <label for="url">Add category path :</label>
+      <input type="text" name="url" placeholder="Category path" id="url" class="category__input" pattern="[a-z]+">
+        <input type="submit" value="SAVE" class="category-form__submit">
     </div>
 </form>
-
-
-<form id="category-form__delete" action="/shop/catalog/category/delete"  method="POST" enctype=multipart/form-data>
+<form id="category-form__delete" action="\shop\catalog\category\delete"  method="POST" enctype=multipart/form-data>
   <div class="category-form">
-    <h1>Delete category</h1>
-<label for="category">Category :</label>
-<select size="1" name="category" class="category__input" >
-  <?php foreach ($block->getCategorys() as $category): ?>
-      <option value="<?php echo $category->getId() ?>">
-          <?php echo ucfirst ($category->getName()) ?> </option>
-    <?php endforeach; ?>
-</select>
-  <input type="submit" value="DELETE CATEGORY" class="category-form__submit">
+    <h3>DELETE</h3>
+<label for="category">Category : </label>
+      <select size="1" name="category" class="category__input" >
+        <?php foreach ($block->getCategorys() as $category): ?>
+            <option value="<?php echo $category->getId() ?>">
+                <?php echo ucfirst ($category->getName()) ?> </option>
+          <?php endforeach; ?>
+      </select>
+    <input type="submit" value="DELETE" class="category-form__submit">
   </div>
 </form>
+</div>
 
-<script type="text/javascript" src="/shop/App/Core/js/category_save.js"></script>
-<script type="text/javascript" src="/shop/App/Core/js/category_delete.js"></script>
+<script type="text/javascript" src="\shop\App\Admin\js\category_save.js"></script>
+<script type="text/javascript" src="\shop\App\Admin\js\category_delete.js"></script>
