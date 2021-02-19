@@ -108,11 +108,11 @@ class Page
      */
     public function render(): int
     {
-        if (empty($this->getTemplate()))
-        {
-            return  include BP.'/App/Core/view/templates/page.phtml';
+        $urlBuilder = $this->urlBuilder;
+        if (empty($this->getTemplate())) {
+            return include BP.'/App/Core/view/templates/page.phtml';
         }
 
-        return  include BP . $this->getTemplate();
+        return include BP . $this->getTemplate();
     }
 }
