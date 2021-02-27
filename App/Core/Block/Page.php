@@ -13,10 +13,16 @@ declare(strict_types=1);
 namespace App\Core\Block;
 
 use App\Catalog\Block\CategoryList;
+use App\Core\Api\UrlBuilderInterface;
 
 class Page
 {
     private $title;
+
+    /**
+     * @var string
+     */
+    public string $template = '';
 
     /**
      * @var
@@ -29,18 +35,14 @@ class Page
     private $categoryListBlock;
 
     /**
-     * @var string
+     * @var \App\Core\Api\UrlBuilderInterface
      */
-    public string $template = '';
+    private UrlBuilderInterface $urlBuilder;
 
-    /**
-     * Page constructor.
-     *
-     * @param \App\Catalog\Block\CategoryList $categoryListBlock
-     */
-    public function __construct(CategoryList $categoryListBlock)
+    public function __construct(\App\Catalog\Block\CategoryList $categoryListBlock, UrlBuilderInterface $urlBuilder)
     {
         $this->categoryListBlock = $categoryListBlock;
+        $this->urlBuilder = $urlBuilder;
     }
 
     /**
@@ -106,12 +108,11 @@ class Page
      */
     public function render(): int
     {
-        if (empty($this->getTemplate()))
-        {
-            return  include BP.'/App/Core/view/templates/page.phtml';
+        $urlBuilder = $this->urlBuilder;
+        if (empty($this->getTemplate())) {
+            return include BP.'/App/Core/view/templates/page.phtml';
         }
 
-        return  include BP . $this->getTemplate();
+        return include BP . $this->getTemplate();
     }
-
 }

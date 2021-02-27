@@ -1,31 +1,32 @@
 <?php /** @var \App\Core\Block\Page $this */ ?>
+<?php /** @var \App\Core\Api\UrlBuilderInterface $urlBuilder */ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="\shop\App\Core\view\theme\default\styles\styles.css">
-    <link rel="stylesheet" type="text/css" href="\shop\App\Core\view\theme\default\styles\top_menu.css">
-    <link rel="stylesheet" type="text/css" href="\shop\App\Core\view\theme\default\styles\search.css">
-    <link rel="stylesheet" type="text/css" href="\shop\App\Core\view\theme\default\styles\product_list.css">
+    <link rel="stylesheet" type="text/css" href="<?= $urlBuilder->getBaseUrl() ?>\App\Core\view\theme\default\styles\styles.css">
+    <link rel="stylesheet" type="text/css" href="<?= $urlBuilder->getBaseUrl() ?>\App\Core\view\theme\default\styles\top_menu.css">
+    <link rel="stylesheet" type="text/css" href="<?= $urlBuilder->getBaseUrl() ?>\App\Core\view\theme\default\styles\search.css">
+    <link rel="stylesheet" type="text/css" href="<?= $urlBuilder->getBaseUrl() ?>\App\Core\view\theme\default\styles\product_list.css">
     <title><?= $this->getTitle() ?></title>
 </head>
     <body>
       <div class="page__menu page__custom-settings menu">
           <ul class="menu__list">
             <li class="menu__group">
-              <a class="menu__link r-link text-underlined" href="http://localhost/shop/">
+              <a class="menu__link r-link text-underlined" href="<?= $urlBuilder->getBaseUrl() ?>">
                 <b>HOME</b>
               </a></li>
               <?= $this->getCategoryList()->toHtml() ?>
           </ul>
       </div>
-            <form action="http://localhost/shop/catalog/search/result" role="search" class="search">
+            <form action="<?= $urlBuilder->getUrl('catalog/search/result') ?>" role="search" class="search">
               <input type="text" name="q" class="search-input" placeholder="Search entire here..." aria-label="Search">
               <button type="submit" class="search-button"><span>Search</span></button>
             </form>
       <div>
           <?= $this->getMainContentBlock()->toHtml() ?>
       </div>
+      <script type="text/javascript" src="<?= $urlBuilder->getBaseUrl() ?>\App\Core\js\jquery.js"></script>
     </body>
-<script type="text/javascript" src="\shop\App\Core\js\jquery.js"></script>
 </html>

@@ -7,7 +7,6 @@
  * @copyright   Copyright (c) 2021 MjFox Inc.
  * @license     End-user License Agreement
  */
-
 namespace App\Core;
 
 class ObjectManager
@@ -15,7 +14,11 @@ class ObjectManager
     /**
      * @var array
      */
-    private static $instance = [];
+    private static array $instance = [];
+
+    private array $preference = [
+        \App\Core\Api\UrlBuilderInterface::class => \App\Core\UrlBuilder::class,
+    ];
 
     /**
      * @return ObjectManager
@@ -39,6 +42,10 @@ class ObjectManager
     public function create(string $type, array $arguments = [])
     {
         try {
+            if (isset($this->preference[$type])) {
+                $type = $this->preference[$type];
+            }
+
             $reflection = new \ReflectionClass($type);
 
             $constructor = $reflection->getConstructor();
@@ -47,8 +54,10 @@ class ObjectManager
             if ($constructor) {
                 foreach ($constructor->getParameters() as $parameter) {
                     $params[$parameter->getName()] = [
-                        'class' => $parameter->getType(),
-                        'value' => $parameter->isOptional()
+                        'class' => $parameter->getType() && !$parameter->getType()->isBuiltin()
+                            ? $parameter->getType()->getName()
+                            : null,
+                        'value' => $parameter->isOptional() ? $parameter->getDefaultValue() : false,
                     ];
                 }
 
