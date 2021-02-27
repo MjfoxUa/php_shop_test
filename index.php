@@ -8,7 +8,7 @@
  * @license     End-user License Agreement
  */
 
-include_once('./bootstrap.php');
+include_once './bootstrap.php';
 
 /** @var \App\Core\Request $request */
 $request = $objectManager->get(\App\Core\Request::class, ['path' => $_SERVER['REQUEST_URI']]);

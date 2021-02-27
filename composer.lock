@@ -4,8 +4,52 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c402b2825332d403bd2047101632d3e6",
+    "content-hash": "40244e7fd0d7ec3e42bb0f2b971aa345",
     "packages": [
+        {
+            "name": "dev256/di",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/06romix/di.git",
+                "reference": "d44f275a9e11a5710c543c46630ad2a464fd944f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/06romix/di/zipball/d44f275a9e11a5710c543c46630ad2a464fd944f",
+                "reference": "d44f275a9e11a5710c543c46630ad2a464fd944f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Di\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Romix",
+                    "email": "romix006@gmail.com"
+                }
+            ],
+            "description": "Simple dependency injection",
+            "keywords": [
+                "di",
+                "object manager "
+            ],
+            "support": {
+                "issues": "https://github.com/06romix/di/issues",
+                "source": "https://github.com/06romix/di/tree/1.0.0"
+            },
+            "time": "2021-02-27T05:56:41+00:00"
+        },
         {
             "name": "phpoption/phpoption",
             "version": "1.7.5",

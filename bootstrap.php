@@ -8,8 +8,7 @@
  * @license     http://wiki.mjfox.com/wiki/EULA  End-user License Agreement
  */
 
-
-use App\Core\ObjectManager;
+use \Di\ObjectManager;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -19,4 +18,4 @@ include_once 'vendor/autoload.php';
 define('DS', DIRECTORY_SEPARATOR);
 define('BP', __DIR__);
 
-$objectManager = ObjectManager::getInstance();
+$objectManager = new ObjectManager();

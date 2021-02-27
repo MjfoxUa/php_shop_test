@@ -10,27 +10,16 @@
 
 namespace App\Catalog\Model;
 
-use App\Core\ObjectManager;
+use Di\ObjectManagerInterface;
 
 class CategoryFactory
 {
-    /**
-     * @var ObjectManager
-     */
-    private $objectManager;
+    public function __construct(
+        private ObjectManagerInterface $objectManager
+    ) {}
 
     /**
-     * CategoryFactory constructor.
-     *
-     * @param ObjectManager $objectManager
-     */
-    public function __construct(ObjectManager $objectManager)
-    {
-        $this->objectManager = $objectManager;
-    }
-
-    /**
-     * @return bool|Category
+     * @return object|Category
      */
     public function create()
     {
