@@ -10,20 +10,13 @@
 
 namespace App\Core;
 
+use Di\ObjectManagerInterface;
+
 class Router
 {
-    /**
-     * @var ObjectManager
-     */
-    private ObjectManager $objectManager;
-
-    /**
-     * @param ObjectManager $objectManager
-     */
-    public function __construct(ObjectManager $objectManager)
-    {
-        $this->objectManager = $objectManager;
-    }
+    public function __construct(
+        private ObjectManagerInterface $objectManager
+    ) {}
 
     /**
      * @return string|bool|Object
